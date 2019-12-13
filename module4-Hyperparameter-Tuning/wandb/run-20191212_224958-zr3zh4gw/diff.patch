@@ -1,0 +1,2765 @@
+nbdiff /tmp/lwkjqm_LS_DS_422_Backprop_Assignment.ipynb module2-backpropagation/LS_DS_422_Backprop_Assignment.ipynb
+--- /tmp/lwkjqm_LS_DS_422_Backprop_Assignment.ipynb  2019-12-12 23:30:09.177183
++++ module2-backpropagation/LS_DS_422_Backprop_Assignment.ipynb  2019-12-11 23:01:10.821619
+[34m## modified /cells/14/source:[0m
+[36m@@ -1,6 +1,5 @@[m
+ import numpy as np[m
+ [m
+[31m-y_temp = np.zeros(y_train.shape)[m
+ y_temp[np.where(y_train == 0.0)[0]] = 1[m
+ y_train = y_temp[m
+ [m
+
+[0m[34m## replaced /cells/15/execution_count:[0m
+[31m-  8
+[32m+  2
+
+[0m[34m## inserted before /cells/15/outputs/0:[0m
+[32m+  output:
+[32m+    output_type: error
+[32m+    ename: NameError
+[32m+    evalue: name 'y_train' is not defined
+[32m+    traceback:
+[32m+      item[0]: [0;31m---------------------------------------------------------------------------[0m
+[32m+      item[1]: [0;31mNameError[0m                                 Traceback (most recent call last)
+[32m+      item[2]:
+[32m+        [0;32m<ipython-input-2-6321113ed8d1>[0m in [0;36m<module>[0;34m()[0m
+[32m+        [1;32m      1[0m [0;31m# A Nice Binary target for ya to work with[0m[0;34m[0m[0;34m[0m[0m
+[32m+        [0;32m----> 2[0;31m [0my_train[0m[0;34m.[0m[0mshape[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[32m+        [0m
+[32m+      item[3]: [0;31mNameError[0m: name 'y_train' is not defined
+
+[0m[34m## deleted /cells/15/outputs/0:[0m
+[31m-  output:
+[31m-    output_type: execute_result
+[31m-    execution_count: 8
+[31m-    data:
+[31m-      text/plain: array([0., 1., 0., ..., 0., 0., 0.])
+
+[0m[34m## modified /cells/15/source:[0m
+[36m@@ -1,2 +1,2 @@[m
+ # A Nice Binary target for ya to work with[m
+[31m-y_train[m
+[m
+[32m+[m[32my_train.shape[m
+[m
+
+[0m[34m## modified /metadata/kernelspec/display_name:[0m
+[31m-  U4S1 NLP
+[32m+  conda_tensorflow_p36
+
+[0m[34m## modified /metadata/kernelspec/name:[0m
+[31m-  u4s1
+[32m+  conda_tensorflow_p36
+
+[0m[34m## modified /metadata/language_info/version:[0m
+[31m-  3.7.0
+[32m+  3.6.5
+
+[0mnbdiff /tmp/3KslUO_LS_DS_423_Keras_Assignment.ipynb module3-Intro-to-Keras/LS_DS_423_Keras_Assignment.ipynb
+--- /tmp/3KslUO_LS_DS_423_Keras_Assignment.ipynb  2019-12-12 23:30:09.581182
++++ module3-Intro-to-Keras/LS_DS_423_Keras_Assignment.ipynb  2019-12-12 00:30:17.508326
+[34m## inserted before /cells/1:[0m
+[32m+  code cell:
+[32m+    execution_count: 1
+[32m+    source:
+[32m+      import pandas as pd
+[32m+  code cell:
+[32m+    execution_count: 2
+[32m+    metadata (unknown keys):
+[32m+      colab:
+[32m+      colab_type: code
+[32m+      id: 8NLTAR87uYJ-
+[32m+    source:
+[32m+      data = pd.read_csv('amesHousePrice.csv')
+[32m+  code cell:
+[32m+    execution_count: 3
+[32m+    source:
+[32m+      data.head()
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 3
+[32m+        data:
+[32m+          text/html:
+[32m+            <div>
+[32m+            <style scoped>
+[32m+                .dataframe tbody tr th:only-of-type {
+[32m+                    vertical-align: middle;
+[32m+                }
+[32m+            
+[32m+                .dataframe tbody tr th {
+[32m+                    vertical-align: top;
+[32m+                }
+[32m+            
+[32m+                .dataframe thead th {
+[32m+                    text-align: right;
+[32m+                }
+[32m+            </style>
+[32m+            <table border="1" class="dataframe">
+[32m+              <thead>
+[32m+                <tr style="text-align: right;">
+[32m+                  <th></th>
+[32m+                  <th>Id</th>
+[32m+                  <th>MSSubClass</th>
+[32m+                  <th>MSZoning</th>
+[32m+                  <th>LotFrontage</th>
+[32m+                  <th>LotArea</th>
+[32m+                  <th>Street</th>
+[32m+                  <th>Alley</th>
+[32m+                  <th>LotShape</th>
+[32m+                  <th>LandContour</th>
+[32m+                  <th>Utilities</th>
+[32m+                  <th>...</th>
+[32m+                  <th>PoolArea</th>
+[32m+                  <th>PoolQC</th>
+[32m+                  <th>Fence</th>
+[32m+                  <th>MiscFeature</th>
+[32m+                  <th>MiscVal</th>
+[32m+                  <th>MoSold</th>
+[32m+                  <th>YrSold</th>
+[32m+                  <th>SaleType</th>
+[32m+                  <th>SaleCondition</th>
+[32m+                  <th>SalePrice</th>
+[32m+                </tr>
+[32m+              </thead>
+[32m+              <tbody>
+[32m+                <tr>
+[32m+                  <th>0</th>
+[32m+                  <td>1</td>
+[32m+                  <td>60</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>65.0</td>
+[32m+                  <td>8450</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>Reg</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>0</td>
+[32m+                  <td>2</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>208500</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>1</th>
+[32m+                  <td>2</td>
+[32m+                  <td>20</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>80.0</td>
+[32m+                  <td>9600</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>Reg</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>0</td>
+[32m+                  <td>5</td>
+[32m+                  <td>2007</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>181500</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>2</th>
+[32m+                  <td>3</td>
+[32m+                  <td>60</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>68.0</td>
+[32m+                  <td>11250</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>IR1</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>0</td>
+[32m+                  <td>9</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>223500</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>3</th>
+[32m+                  <td>4</td>
+[32m+                  <td>70</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>60.0</td>
+[32m+                  <td>9550</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>IR1</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>0</td>
+[32m+                  <td>2</td>
+[32m+                  <td>2006</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Abnorml</td>
+[32m+                  <td>140000</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>4</th>
+[32m+                  <td>5</td>
+[32m+                  <td>60</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>84.0</td>
+[32m+                  <td>14260</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>IR1</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>NaN</td>
+[32m+                  <td>0</td>
+[32m+                  <td>12</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>250000</td>
+[32m+                </tr>
+[32m+              </tbody>
+[32m+            </table>
+[32m+            <p>5 rows × 81 columns</p>
+[32m+            </div>
+[32m+          text/plain:
+[32m+               Id  MSSubClass MSZoning  LotFrontage  LotArea Street Alley LotShape  \
+[32m+            0   1          60       RL         65.0     8450   Pave   NaN      Reg   
+[32m+            1   2          20       RL         80.0     9600   Pave   NaN      Reg   
+[32m+            2   3          60       RL         68.0    11250   Pave   NaN      IR1   
+[32m+            3   4          70       RL         60.0     9550   Pave   NaN      IR1   
+[32m+            4   5          60       RL         84.0    14260   Pave   NaN      IR1   
+[32m+            
+[32m+              LandContour Utilities  ... PoolArea PoolQC Fence MiscFeature MiscVal MoSold  \
+[32m+            0         Lvl    AllPub  ...        0    NaN   NaN         NaN       0      2   
+[32m+            1         Lvl    AllPub  ...        0    NaN   NaN         NaN       0      5   
+[32m+            2         Lvl    AllPub  ...        0    NaN   NaN         NaN       0      9   
+[32m+            3         Lvl    AllPub  ...        0    NaN   NaN         NaN       0      2   
+[32m+            4         Lvl    AllPub  ...        0    NaN   NaN         NaN       0     12   
+[32m+            
+[32m+              YrSold  SaleType  SaleCondition  SalePrice  
+[32m+            0   2008        WD         Normal     208500  
+[32m+            1   2007        WD         Normal     181500  
+[32m+            2   2008        WD         Normal     223500  
+[32m+            3   2006        WD        Abnorml     140000  
+[32m+            4   2008        WD         Normal     250000  
+[32m+            
+[32m+            [5 rows x 81 columns]
+[32m+  code cell:
+[32m+    execution_count: 13
+[32m+    source:
+[32m+      data.shape
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 13
+[32m+        data:
+[32m+          text/plain: (1460, 81)
+[32m+  code cell:
+[32m+    execution_count: 16
+[32m+    source:
+[32m+      data.isna().sum().sort_values(ascending=False)[:20]
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 16
+[32m+        data:
+[32m+          text/plain:
+[32m+            PoolQC          1453
+[32m+            MiscFeature     1406
+[32m+            Alley           1369
+[32m+            Fence           1179
+[32m+            FireplaceQu      690
+[32m+            LotFrontage      259
+[32m+            GarageCond        81
+[32m+            GarageType        81
+[32m+            GarageYrBlt       81
+[32m+            GarageFinish      81
+[32m+            GarageQual        81
+[32m+            BsmtExposure      38
+[32m+            BsmtFinType2      38
+[32m+            BsmtFinType1      37
+[32m+            BsmtCond          37
+[32m+            BsmtQual          37
+[32m+            MasVnrArea         8
+[32m+            MasVnrType         8
+[32m+            Electrical         1
+[32m+            Utilities          0
+[32m+            dtype: int64
+[32m+  code cell:
+[32m+    execution_count: 28
+[32m+    source:
+[32m+      df = data.dropna(axis=1)
+[32m+  code cell:
+[32m+    execution_count: 29
+[32m+    source:
+[32m+      df.head()
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 29
+[32m+        data:
+[32m+          text/html:
+[32m+            <div>
+[32m+            <style scoped>
+[32m+                .dataframe tbody tr th:only-of-type {
+[32m+                    vertical-align: middle;
+[32m+                }
+[32m+            
+[32m+                .dataframe tbody tr th {
+[32m+                    vertical-align: top;
+[32m+                }
+[32m+            
+[32m+                .dataframe thead th {
+[32m+                    text-align: right;
+[32m+                }
+[32m+            </style>
+[32m+            <table border="1" class="dataframe">
+[32m+              <thead>
+[32m+                <tr style="text-align: right;">
+[32m+                  <th></th>
+[32m+                  <th>Id</th>
+[32m+                  <th>MSSubClass</th>
+[32m+                  <th>MSZoning</th>
+[32m+                  <th>LotArea</th>
+[32m+                  <th>Street</th>
+[32m+                  <th>LotShape</th>
+[32m+                  <th>LandContour</th>
+[32m+                  <th>Utilities</th>
+[32m+                  <th>LotConfig</th>
+[32m+                  <th>LandSlope</th>
+[32m+                  <th>...</th>
+[32m+                  <th>EnclosedPorch</th>
+[32m+                  <th>3SsnPorch</th>
+[32m+                  <th>ScreenPorch</th>
+[32m+                  <th>PoolArea</th>
+[32m+                  <th>MiscVal</th>
+[32m+                  <th>MoSold</th>
+[32m+                  <th>YrSold</th>
+[32m+                  <th>SaleType</th>
+[32m+                  <th>SaleCondition</th>
+[32m+                  <th>SalePrice</th>
+[32m+                </tr>
+[32m+              </thead>
+[32m+              <tbody>
+[32m+                <tr>
+[32m+                  <th>0</th>
+[32m+                  <td>1</td>
+[32m+                  <td>60</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>8450</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>Reg</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>Inside</td>
+[32m+                  <td>Gtl</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>2</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>208500</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>1</th>
+[32m+                  <td>2</td>
+[32m+                  <td>20</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>9600</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>Reg</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>FR2</td>
+[32m+                  <td>Gtl</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>5</td>
+[32m+                  <td>2007</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>181500</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>2</th>
+[32m+                  <td>3</td>
+[32m+                  <td>60</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>11250</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>IR1</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>Inside</td>
+[32m+                  <td>Gtl</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>9</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>223500</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>3</th>
+[32m+                  <td>4</td>
+[32m+                  <td>70</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>9550</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>IR1</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>Corner</td>
+[32m+                  <td>Gtl</td>
+[32m+                  <td>...</td>
+[32m+                  <td>272</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>2</td>
+[32m+                  <td>2006</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Abnorml</td>
+[32m+                  <td>140000</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>4</th>
+[32m+                  <td>5</td>
+[32m+                  <td>60</td>
+[32m+                  <td>RL</td>
+[32m+                  <td>14260</td>
+[32m+                  <td>Pave</td>
+[32m+                  <td>IR1</td>
+[32m+                  <td>Lvl</td>
+[32m+                  <td>AllPub</td>
+[32m+                  <td>FR2</td>
+[32m+                  <td>Gtl</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>12</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>WD</td>
+[32m+                  <td>Normal</td>
+[32m+                  <td>250000</td>
+[32m+                </tr>
+[32m+              </tbody>
+[32m+            </table>
+[32m+            <p>5 rows × 62 columns</p>
+[32m+            </div>
+[32m+          text/plain:
+[32m+               Id  MSSubClass MSZoning  LotArea Street LotShape LandContour Utilities  \
+[32m+            0   1          60       RL     8450   Pave      Reg         Lvl    AllPub   
+[32m+            1   2          20       RL     9600   Pave      Reg         Lvl    AllPub   
+[32m+            2   3          60       RL    11250   Pave      IR1         Lvl    AllPub   
+[32m+            3   4          70       RL     9550   Pave      IR1         Lvl    AllPub   
+[32m+            4   5          60       RL    14260   Pave      IR1         Lvl    AllPub   
+[32m+            
+[32m+              LotConfig LandSlope  ... EnclosedPorch 3SsnPorch ScreenPorch PoolArea  \
+[32m+            0    Inside       Gtl  ...             0         0           0        0   
+[32m+            1       FR2       Gtl  ...             0         0           0        0   
+[32m+            2    Inside       Gtl  ...             0         0           0        0   
+[32m+            3    Corner       Gtl  ...           272         0           0        0   
+[32m+            4       FR2       Gtl  ...             0         0           0        0   
+[32m+            
+[32m+              MiscVal  MoSold  YrSold  SaleType  SaleCondition SalePrice  
+[32m+            0       0       2    2008        WD         Normal    208500  
+[32m+            1       0       5    2007        WD         Normal    181500  
+[32m+            2       0       9    2008        WD         Normal    223500  
+[32m+            3       0       2    2006        WD        Abnorml    140000  
+[32m+            4       0      12    2008        WD         Normal    250000  
+[32m+            
+[32m+            [5 rows x 62 columns]
+[32m+  code cell:
+[32m+    execution_count: 51
+[32m+    source:
+[32m+      y = df['SalePrice']   
+[32m+  code cell:
+[32m+    execution_count: 53
+[32m+    source:
+[32m+      df = df.drop(columns=['Id', 'SalePrice'])
+[32m+  code cell:
+[32m+    execution_count: 30
+[32m+    source:
+[32m+      !pip install category_encoders
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          Collecting category_encoders
+[32m+          [?25l  Downloading https://files.pythonhosted.org/packages/a0/52/c54191ad3782de633ea3d6ee3bb2837bda0cf3bc97644bb6375cf14150a0/category_encoders-2.1.0-py2.py3-none-any.whl (100kB)
+[32m+          [K    100% |████████████████████████████████| 102kB 22.1MB/s a 0:00:01
+[32m+          [?25hRequirement already satisfied: scipy>=0.19.0 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from category_encoders) (1.3.1)
+[32m+          Requirement already satisfied: numpy>=1.11.3 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from category_encoders) (1.16.4)
+[32m+          Requirement already satisfied: statsmodels>=0.6.1 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from category_encoders) (0.9.0)
+[32m+          Requirement already satisfied: patsy>=0.4.1 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from category_encoders) (0.5.0)
+[32m+          Requirement already satisfied: pandas>=0.21.1 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from category_encoders) (0.24.2)
+[32m+          Requirement already satisfied: scikit-learn>=0.20.0 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from category_encoders) (0.21.3)
+[32m+          Requirement already satisfied: six in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from patsy>=0.4.1->category_encoders) (1.11.0)
+[32m+          Requirement already satisfied: pytz>=2011k in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from pandas>=0.21.1->category_encoders) (2018.4)
+[32m+          Requirement already satisfied: python-dateutil>=2.5.0 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from pandas>=0.21.1->category_encoders) (2.7.3)
+[32m+          Requirement already satisfied: joblib>=0.11 in /home/ec2-user/anaconda3/envs/tensorflow_p36/lib/python3.6/site-packages (from scikit-learn>=0.20.0->category_encoders) (0.13.2)
+[32m+          Installing collected packages: category-encoders
+[32m+          Successfully installed category-encoders-2.1.0
+[32m+          [33mYou are using pip version 10.0.1, however version 19.3.1 is available.
+[32m+          You should consider upgrading via the 'pip install --upgrade pip' command.[0m
+[32m+  code cell:
+[32m+    execution_count: 54
+[32m+    source:
+[32m+      from category_encoders import OrdinalEncoder
+[32m+  code cell:
+[32m+    execution_count: 55
+[32m+    source:
+[32m+      encoder = OrdinalEncoder()
+[32m+  code cell:
+[32m+    execution_count: 56
+[32m+    source:
+[32m+      encoder.fit(df)
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 56
+[32m+        data:
+[32m+          text/plain:
+[32m+            OrdinalEncoder(cols=['MSZoning', 'Street', 'LotShape', 'LandContour',
+[32m+                                 'Utilities', 'LotConfig', 'LandSlope', 'Neighborhood',
+[32m+                                 'Condition1', 'Condition2', 'BldgType', 'HouseStyle',
+[32m+                                 'RoofStyle', 'RoofMatl', 'Exterior1st', 'Exterior2nd',
+[32m+                                 'ExterQual', 'ExterCond', 'Foundation', 'Heating',
+[32m+                                 'HeatingQC', 'CentralAir', 'KitchenQual', 'Functional',
+[32m+                                 'PavedDrive', 'SaleType', 'SaleCond...
+[32m+            NaN    -2
+[32m+            dtype: int64},
+[32m+                                    {'col': 'PavedDrive', 'data_type': dtype('O'),
+[32m+                                     'mapping': Y      1
+[32m+            N      2
+[32m+            P      3
+[32m+            NaN   -2
+[32m+            dtype: int64},
+[32m+                                    {'col': 'SaleType', 'data_type': dtype('O'),
+[32m+                                     'mapping': WD       1
+[32m+            New      2
+[32m+            COD      3
+[32m+            ConLD    4
+[32m+            ConLI    5
+[32m+            CWD      6
+[32m+            ConLw    7
+[32m+            Con      8
+[32m+            Oth      9
+[32m+            NaN     -2
+[32m+            dtype: int64},
+[32m+                                    {'col': 'SaleCondition', 'data_type': dtype('O'),
+[32m+                                     'mapping': Normal     1
+[32m+            Abnorml    2
+[32m+            Partial    3
+[32m+            AdjLand    4
+[32m+            Alloca     5
+[32m+            Family     6
+[32m+            NaN       -2
+[32m+            dtype: int64}],
+[32m+                           return_df=True, verbose=0)
+[32m+  code cell:
+[32m+    execution_count: 57
+[32m+    source:
+[32m+      coded = encoder.transform(df)
+[32m+  code cell:
+[32m+    execution_count: 58
+[32m+    source:
+[32m+      coded.head()
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 58
+[32m+        data:
+[32m+          text/html:
+[32m+            <div>
+[32m+            <style scoped>
+[32m+                .dataframe tbody tr th:only-of-type {
+[32m+                    vertical-align: middle;
+[32m+                }
+[32m+            
+[32m+                .dataframe tbody tr th {
+[32m+                    vertical-align: top;
+[32m+                }
+[32m+            
+[32m+                .dataframe thead th {
+[32m+                    text-align: right;
+[32m+                }
+[32m+            </style>
+[32m+            <table border="1" class="dataframe">
+[32m+              <thead>
+[32m+                <tr style="text-align: right;">
+[32m+                  <th></th>
+[32m+                  <th>MSSubClass</th>
+[32m+                  <th>MSZoning</th>
+[32m+                  <th>LotArea</th>
+[32m+                  <th>Street</th>
+[32m+                  <th>LotShape</th>
+[32m+                  <th>LandContour</th>
+[32m+                  <th>Utilities</th>
+[32m+                  <th>LotConfig</th>
+[32m+                  <th>LandSlope</th>
+[32m+                  <th>Neighborhood</th>
+[32m+                  <th>...</th>
+[32m+                  <th>OpenPorchSF</th>
+[32m+                  <th>EnclosedPorch</th>
+[32m+                  <th>3SsnPorch</th>
+[32m+                  <th>ScreenPorch</th>
+[32m+                  <th>PoolArea</th>
+[32m+                  <th>MiscVal</th>
+[32m+                  <th>MoSold</th>
+[32m+                  <th>YrSold</th>
+[32m+                  <th>SaleType</th>
+[32m+                  <th>SaleCondition</th>
+[32m+                </tr>
+[32m+              </thead>
+[32m+              <tbody>
+[32m+                <tr>
+[32m+                  <th>0</th>
+[32m+                  <td>60</td>
+[32m+                  <td>1</td>
+[32m+                  <td>8450</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>...</td>
+[32m+                  <td>61</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>2</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>1</th>
+[32m+                  <td>20</td>
+[32m+                  <td>1</td>
+[32m+                  <td>9600</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                  <td>...</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>5</td>
+[32m+                  <td>2007</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>2</th>
+[32m+                  <td>60</td>
+[32m+                  <td>1</td>
+[32m+                  <td>11250</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>...</td>
+[32m+                  <td>42</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>9</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>3</th>
+[32m+                  <td>70</td>
+[32m+                  <td>1</td>
+[32m+                  <td>9550</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>3</td>
+[32m+                  <td>1</td>
+[32m+                  <td>3</td>
+[32m+                  <td>...</td>
+[32m+                  <td>35</td>
+[32m+                  <td>272</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>2</td>
+[32m+                  <td>2006</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                </tr>
+[32m+                <tr>
+[32m+                  <th>4</th>
+[32m+                  <td>60</td>
+[32m+                  <td>1</td>
+[32m+                  <td>14260</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                  <td>2</td>
+[32m+                  <td>1</td>
+[32m+                  <td>4</td>
+[32m+                  <td>...</td>
+[32m+                  <td>84</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>0</td>
+[32m+                  <td>12</td>
+[32m+                  <td>2008</td>
+[32m+                  <td>1</td>
+[32m+                  <td>1</td>
+[32m+                </tr>
+[32m+              </tbody>
+[32m+            </table>
+[32m+            <p>5 rows × 60 columns</p>
+[32m+            </div>
+[32m+          text/plain:
+[32m+               MSSubClass  MSZoning  LotArea  Street  LotShape  LandContour  Utilities  \
+[32m+            0          60         1     8450       1         1            1          1   
+[32m+            1          20         1     9600       1         1            1          1   
+[32m+            2          60         1    11250       1         2            1          1   
+[32m+            3          70         1     9550       1         2            1          1   
+[32m+            4          60         1    14260       1         2            1          1   
+[32m+            
+[32m+               LotConfig  LandSlope  Neighborhood  ...  OpenPorchSF  EnclosedPorch  \
+[32m+            0          1          1             1  ...           61              0   
+[32m+            1          2          1             2  ...            0              0   
+[32m+            2          1          1             1  ...           42              0   
+[32m+            3          3          1             3  ...           35            272   
+[32m+            4          2          1             4  ...           84              0   
+[32m+            
+[32m+               3SsnPorch  ScreenPorch  PoolArea  MiscVal  MoSold  YrSold  SaleType  \
+[32m+            0          0            0         0        0       2    2008         1   
+[32m+            1          0            0         0        0       5    2007         1   
+[32m+            2          0            0         0        0       9    2008         1   
+[32m+            3          0            0         0        0       2    2006         1   
+[32m+            4          0            0         0        0      12    2008         1   
+[32m+            
+[32m+               SaleCondition  
+[32m+            0              1  
+[32m+            1              1  
+[32m+            2              1  
+[32m+            3              2  
+[32m+            4              1  
+[32m+            
+[32m+            [5 rows x 60 columns]
+[32m+  code cell:
+[32m+    execution_count: 59
+[32m+    source:
+[32m+      from sklearn.preprocessing import Normalizer
+[32m+  code cell:
+[32m+    execution_count: 60
+[32m+    source:
+[32m+      normie = Normalizer()
+[32m+  code cell:
+[32m+    execution_count: 61
+[32m+    source:
+[32m+      normie.fit(coded)
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 61
+[32m+        data:
+[32m+          text/plain: Normalizer(copy=True, norm='l2')
+[32m+  code cell:
+[32m+    execution_count: 66
+[32m+    source:
+[32m+      X = normie.transform(coded)
+[32m+  code cell:
+[32m+    execution_count: 68
+[32m+    source:
+[32m+      X.shape
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 68
+[32m+        data:
+[32m+          text/plain: (1460, 60)
+[32m+  code cell:
+[32m+    execution_count: 69
+[32m+    source:
+[32m+      len(X[0])
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 69
+[32m+        data:
+[32m+          text/plain: 60
+[32m+  code cell:
+[32m+    execution_count: 97
+[32m+    source:
+[32m+      from tensorflow.keras.models import Sequential
+[32m+      from tensorflow.keras.layers import Dense
+[32m+      
+[32m+      
+[32m+      model = Sequential()
+[32m+      model.add(Dense(60,input_dim=60, activation='relu'))
+[32m+      model.add(Dense(10, activation='relu'))
+[32m+      model.add(Dense(30, activation='relu'))
+[32m+      model.add(Dense(1, activation='relu'))
+[32m+      model.compile(loss='mean_squared_error',
+[32m+                    optimizer='adam',
+[32m+                    metrics=['mae', 'mse'])
+[32m+      model.fit(X,y, epochs=500)
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          Epoch 1/500
+[32m+          1460/1460 [==============================] - 1s 372us/sample - loss: 39039094705.4466 - mean_absolute_error: 180920.7188 - mean_squared_error: 39039094784.0000
+[32m+          Epoch 2/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 39038151076.8219 - mean_absolute_error: 180918.0781 - mean_squared_error: 39038152704.0000
+[32m+          Epoch 3/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 39034280008.9425 - mean_absolute_error: 180907.3125 - mean_squared_error: 39034273792.0000
+[32m+          Epoch 4/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 39022504940.3616 - mean_absolute_error: 180874.7188 - mean_squared_error: 39022510080.0000
+[32m+          Epoch 5/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 38993752030.3343 - mean_absolute_error: 180794.9531 - mean_squared_error: 38993756160.0000
+[32m+          Epoch 6/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 38934026380.2740 - mean_absolute_error: 180628.9844 - mean_squared_error: 38934036480.0000
+[32m+          Epoch 7/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 38824838191.6931 - mean_absolute_error: 180325.3906 - mean_squared_error: 38824837120.0000
+[32m+          Epoch 8/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 38643781418.7836 - mean_absolute_error: 179821.3906 - mean_squared_error: 38643785728.0000
+[32m+          Epoch 9/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 38364074107.4411 - mean_absolute_error: 179034.5312 - mean_squared_error: 38364078080.0000
+[32m+          Epoch 10/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 37957913872.1315 - mean_absolute_error: 177887.4688 - mean_squared_error: 37957918720.0000
+[32m+          Epoch 11/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 37397653896.7671 - mean_absolute_error: 176294.7031 - mean_squared_error: 37397651456.0000
+[32m+          Epoch 12/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 36653360113.9726 - mean_absolute_error: 174170.7500 - mean_squared_error: 36653355008.0000
+[32m+          Epoch 13/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 35704890443.7479 - mean_absolute_error: 171411.2812 - mean_squared_error: 35704889344.0000
+[32m+          Epoch 14/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 34531825809.8849 - mean_absolute_error: 167930.2812 - mean_squared_error: 34531831808.0000
+[32m+          Epoch 15/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 33126277989.6986 - mean_absolute_error: 163651.1406 - mean_squared_error: 33126273024.0000
+[32m+          Epoch 16/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 31483577212.1425 - mean_absolute_error: 158499.3750 - mean_squared_error: 31483580416.0000
+[32m+          Epoch 17/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 29614614140.8438 - mean_absolute_error: 152470.6094 - mean_squared_error: 29614616576.0000
+[32m+          Epoch 18/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 27545655223.0575 - mean_absolute_error: 145417.0781 - mean_squared_error: 27545661440.0000
+[32m+          Epoch 19/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 25310834519.6712 - mean_absolute_error: 137531.9062 - mean_squared_error: 25310836736.0000
+[32m+          Epoch 20/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 22975549619.5507 - mean_absolute_error: 128711.0703 - mean_squared_error: 22975549440.0000
+[32m+          Epoch 21/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 20591879339.1342 - mean_absolute_error: 119136.1562 - mean_squared_error: 20591880192.0000
+[32m+          Epoch 22/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 18243850376.0658 - mean_absolute_error: 109042.3750 - mean_squared_error: 18243850240.0000
+[32m+          Epoch 23/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 16008294133.4795 - mean_absolute_error: 98871.7891 - mean_squared_error: 16008289280.0000
+[32m+          Epoch 24/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 13969775108.2082 - mean_absolute_error: 88767.0234 - mean_squared_error: 13969777664.0000
+[32m+          Epoch 25/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 12175619654.1370 - mean_absolute_error: 79642.4609 - mean_squared_error: 12175619072.0000
+[32m+          Epoch 26/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 10667751325.8082 - mean_absolute_error: 71622.7109 - mean_squared_error: 10667751424.0000
+[32m+          Epoch 27/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 9467871960.0219 - mean_absolute_error: 65647.6641 - mean_squared_error: 9467873280.0000
+[32m+          Epoch 28/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 8565674212.6466 - mean_absolute_error: 61815.9141 - mean_squared_error: 8565676032.0000
+[32m+          Epoch 29/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 7920198785.0521 - mean_absolute_error: 59644.1680 - mean_squared_error: 7920199168.0000
+[32m+          Epoch 30/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 7488840172.3616 - mean_absolute_error: 58724.9961 - mean_squared_error: 7488839168.0000
+[32m+          Epoch 31/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 7215125798.5753 - mean_absolute_error: 58208.7773 - mean_squared_error: 7215126016.0000
+[32m+          Epoch 32/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 7046795830.7068 - mean_absolute_error: 58228.3789 - mean_squared_error: 7046795776.0000
+[32m+          Epoch 33/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6947529048.3726 - mean_absolute_error: 58380.9570 - mean_squared_error: 6947529728.0000
+[32m+          Epoch 34/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6887814654.5973 - mean_absolute_error: 58586.0664 - mean_squared_error: 6887815680.0000
+[32m+          Epoch 35/500
+[32m+          1460/1460 [==============================] - 0s 99us/sample - loss: 6848460659.7260 - mean_absolute_error: 58777.9062 - mean_squared_error: 6848460800.0000
+[32m+          Epoch 36/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6821168938.7836 - mean_absolute_error: 58909.1875 - mean_squared_error: 6821169152.0000
+[32m+          Epoch 37/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6800633345.4027 - mean_absolute_error: 59037.6641 - mean_squared_error: 6800634368.0000
+[32m+          Epoch 38/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6782387463.7151 - mean_absolute_error: 59088.9531 - mean_squared_error: 6782387712.0000
+[32m+          Epoch 39/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6766373352.1534 - mean_absolute_error: 59122.1367 - mean_squared_error: 6766371840.0000
+[32m+          Epoch 40/500
+[32m+          1460/1460 [==============================] - 0s 96us/sample - loss: 6750973047.2329 - mean_absolute_error: 59053.6484 - mean_squared_error: 6750972416.0000
+[32m+          Epoch 41/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6734033976.1096 - mean_absolute_error: 59026.7930 - mean_squared_error: 6734032384.0000
+[32m+          Epoch 42/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6718447200.7890 - mean_absolute_error: 59082.9375 - mean_squared_error: 6718446080.0000
+[32m+          Epoch 43/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6701921630.6849 - mean_absolute_error: 59018.8164 - mean_squared_error: 6701921792.0000
+[32m+          Epoch 44/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6685956708.2959 - mean_absolute_error: 58919.1602 - mean_squared_error: 6685957120.0000
+[32m+          Epoch 45/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 6670076731.6164 - mean_absolute_error: 58809.0469 - mean_squared_error: 6670076928.0000
+[32m+          Epoch 46/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6653397489.9726 - mean_absolute_error: 58777.9023 - mean_squared_error: 6653395456.0000
+[32m+          Epoch 47/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6638736738.8932 - mean_absolute_error: 58686.0977 - mean_squared_error: 6638736384.0000
+[32m+          Epoch 48/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6621038050.5425 - mean_absolute_error: 58670.7461 - mean_squared_error: 6621037568.0000
+[32m+          Epoch 49/500
+[32m+      output 1:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6604218990.8164 - mean_absolute_error: 58598.3945 - mean_squared_error: 6604218880.0000
+[32m+          Epoch 50/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6588435176.8548 - mean_absolute_error: 58512.5273 - mean_squared_error: 6588435456.0000
+[32m+          Epoch 51/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6571152630.8822 - mean_absolute_error: 58474.9023 - mean_squared_error: 6571152896.0000
+[32m+          Epoch 52/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6555093453.5014 - mean_absolute_error: 58343.8359 - mean_squared_error: 6555094016.0000
+[32m+          Epoch 53/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6537816501.6548 - mean_absolute_error: 58350.9805 - mean_squared_error: 6537816576.0000
+[32m+          Epoch 54/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6521775738.0384 - mean_absolute_error: 58190.7344 - mean_squared_error: 6521775616.0000
+[32m+          Epoch 55/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6504989405.6329 - mean_absolute_error: 58185.6289 - mean_squared_error: 6504987648.0000
+[32m+          Epoch 56/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6487982076.4932 - mean_absolute_error: 58049.1953 - mean_squared_error: 6487982080.0000
+[32m+          Epoch 57/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6470361982.9479 - mean_absolute_error: 57919.6836 - mean_squared_error: 6470361088.0000
+[32m+          Epoch 58/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 6454016095.3863 - mean_absolute_error: 57852.8438 - mean_squared_error: 6454014976.0000
+[32m+          Epoch 59/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6437677785.4247 - mean_absolute_error: 57961.1836 - mean_squared_error: 6437677568.0000
+[32m+          Epoch 60/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 6419104045.5890 - mean_absolute_error: 57743.1250 - mean_squared_error: 6419104256.0000
+[32m+          Epoch 61/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6401870272.8767 - mean_absolute_error: 57645.1602 - mean_squared_error: 6401869824.0000
+[32m+          Epoch 62/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6383841260.3616 - mean_absolute_error: 57572.5742 - mean_squared_error: 6383841792.0000
+[32m+          Epoch 63/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6368418399.3863 - mean_absolute_error: 57486.8750 - mean_squared_error: 6368417792.0000
+[32m+          Epoch 64/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6350708205.7644 - mean_absolute_error: 57422.1797 - mean_squared_error: 6350708224.0000
+[32m+          Epoch 65/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6332047087.8685 - mean_absolute_error: 57330.9844 - mean_squared_error: 6332047360.0000
+[32m+          Epoch 66/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6316042457.4247 - mean_absolute_error: 57318.1680 - mean_squared_error: 6316042752.0000
+[32m+          Epoch 67/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6298167695.7808 - mean_absolute_error: 57300.6250 - mean_squared_error: 6298168320.0000
+[32m+          Epoch 68/500
+[32m+          1460/1460 [==============================] - 0s 88us/sample - loss: 6281486801.7096 - mean_absolute_error: 57116.4102 - mean_squared_error: 6281487872.0000
+[32m+          Epoch 69/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6263885337.2493 - mean_absolute_error: 57006.7617 - mean_squared_error: 6263885824.0000
+[32m+          Epoch 70/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6246516835.5945 - mean_absolute_error: 56986.7070 - mean_squared_error: 6246517248.0000
+[32m+          Epoch 71/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6230934699.1342 - mean_absolute_error: 56777.7422 - mean_squared_error: 6230934016.0000
+[32m+          Epoch 72/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6215716102.3123 - mean_absolute_error: 56953.3477 - mean_squared_error: 6215716352.0000
+[32m+          Epoch 73/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6194395177.3808 - mean_absolute_error: 56724.0781 - mean_squared_error: 6194395136.0000
+[32m+          Epoch 74/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6177146802.1479 - mean_absolute_error: 56588.3828 - mean_squared_error: 6177147392.0000
+[32m+          Epoch 75/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6160464820.6027 - mean_absolute_error: 56636.2461 - mean_squared_error: 6160464384.0000
+[32m+          Epoch 76/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6144059546.3014 - mean_absolute_error: 56432.7383 - mean_squared_error: 6144058368.0000
+[32m+          Epoch 77/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6124904163.2438 - mean_absolute_error: 56371.8398 - mean_squared_error: 6124904960.0000
+[32m+          Epoch 78/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6108080151.1452 - mean_absolute_error: 56401.1250 - mean_squared_error: 6108079616.0000
+[32m+          Epoch 79/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6092693365.8301 - mean_absolute_error: 56158.7227 - mean_squared_error: 6092693504.0000
+[32m+          Epoch 80/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 6073492415.4740 - mean_absolute_error: 56103.8359 - mean_squared_error: 6073491456.0000
+[32m+          Epoch 81/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6055951442.7616 - mean_absolute_error: 56032.9141 - mean_squared_error: 6055951360.0000
+[32m+          Epoch 82/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 6039402460.9315 - mean_absolute_error: 55878.7500 - mean_squared_error: 6039402496.0000
+[32m+          Epoch 83/500
+[32m+          1460/1460 [==============================] - 0s 95us/sample - loss: 6023825069.2384 - mean_absolute_error: 56068.8398 - mean_squared_error: 6023825408.0000
+[32m+          Epoch 84/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 6003224479.9123 - mean_absolute_error: 55782.2266 - mean_squared_error: 6003224576.0000
+[32m+          Epoch 85/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 5985812792.8110 - mean_absolute_error: 55673.4258 - mean_squared_error: 5985812480.0000
+[32m+          Epoch 86/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5967808708.3836 - mean_absolute_error: 55599.4531 - mean_squared_error: 5967808512.0000
+[32m+          Epoch 87/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5950275811.2438 - mean_absolute_error: 55562.9531 - mean_squared_error: 5950275584.0000
+[32m+          Epoch 88/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5933784707.8575 - mean_absolute_error: 55403.1797 - mean_squared_error: 5933785088.0000
+[32m+          Epoch 89/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 5915806510.9918 - mean_absolute_error: 55491.0156 - mean_squared_error: 5915806208.0000
+[32m+          Epoch 90/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 5897876510.8603 - mean_absolute_error: 55219.1172 - mean_squared_error: 5897875968.0000
+[32m+          Epoch 91/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5881129312.7890 - mean_absolute_error: 55222.4453 - mean_squared_error: 5881128960.0000
+[32m+          Epoch 92/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5864119107.3315 - mean_absolute_error: 55039.3516 - mean_squared_error: 5864118784.0000
+[32m+          Epoch 93/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5844918395.4411 - mean_absolute_error: 55016.7188 - mean_squared_error: 5844917760.0000
+[32m+          Epoch 94/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5831030830.2904 - mean_absolute_error: 55069.0508 - mean_squared_error: 5831031296.0000
+[32m+          Epoch 95/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5811197211.3534 - mean_absolute_error: 54662.8281 - mean_squared_error: 5811197440.0000
+[32m+          Epoch 96/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5790735441.3589 - mean_absolute_error: 54622.5469 - mean_squared_error: 5790735360.0000
+[32m+          Epoch 97/500
+[32m+      output 2:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 5777479927.5836 - mean_absolute_error: 54739.8594 - mean_squared_error: 5777479680.0000
+[32m+          Epoch 98/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5756880654.0274 - mean_absolute_error: 54582.5000 - mean_squared_error: 5756879872.0000
+[32m+          Epoch 99/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5741562952.9425 - mean_absolute_error: 54381.5352 - mean_squared_error: 5741563392.0000
+[32m+          Epoch 100/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5723722457.4247 - mean_absolute_error: 54546.9570 - mean_squared_error: 5723722752.0000
+[32m+          Epoch 101/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5703635715.5068 - mean_absolute_error: 54341.9570 - mean_squared_error: 5703634944.0000
+[32m+          Epoch 102/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5688770214.9260 - mean_absolute_error: 54301.3516 - mean_squared_error: 5688770560.0000
+[32m+          Epoch 103/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 5671201179.0027 - mean_absolute_error: 54026.0039 - mean_squared_error: 5671202304.0000
+[32m+          Epoch 104/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5651853558.8822 - mean_absolute_error: 53996.1953 - mean_squared_error: 5651852800.0000
+[32m+          Epoch 105/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5634478348.6247 - mean_absolute_error: 53915.5938 - mean_squared_error: 5634478080.0000
+[32m+          Epoch 106/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5617910604.4493 - mean_absolute_error: 53700.5430 - mean_squared_error: 5617909760.0000
+[32m+          Epoch 107/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 5603625383.6274 - mean_absolute_error: 53880.7656 - mean_squared_error: 5603624448.0000
+[32m+          Epoch 108/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5581059707.4411 - mean_absolute_error: 53621.9883 - mean_squared_error: 5581060096.0000
+[32m+          Epoch 109/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5565611106.1918 - mean_absolute_error: 53363.0469 - mean_squared_error: 5565611008.0000
+[32m+          Epoch 110/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5547598324.7781 - mean_absolute_error: 53517.3906 - mean_squared_error: 5547598336.0000
+[32m+          Epoch 111/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 5528085783.1452 - mean_absolute_error: 53291.3320 - mean_squared_error: 5528086016.0000
+[32m+          Epoch 112/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5511766483.8137 - mean_absolute_error: 53219.7930 - mean_squared_error: 5511766528.0000
+[32m+          Epoch 113/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5494786534.7507 - mean_absolute_error: 52954.0000 - mean_squared_error: 5494787072.0000
+[32m+          Epoch 114/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5476793206.5315 - mean_absolute_error: 53163.1875 - mean_squared_error: 5476793856.0000
+[32m+          Epoch 115/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5457665919.6493 - mean_absolute_error: 52958.4453 - mean_squared_error: 5457665536.0000
+[32m+          Epoch 116/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5441285386.5205 - mean_absolute_error: 52653.4414 - mean_squared_error: 5441285632.0000
+[32m+          Epoch 117/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5425011678.3342 - mean_absolute_error: 52738.5547 - mean_squared_error: 5425012224.0000
+[32m+          Epoch 118/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 5404319424.8767 - mean_absolute_error: 52544.4883 - mean_squared_error: 5404319232.0000
+[32m+          Epoch 119/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5387158504.1534 - mean_absolute_error: 52571.6758 - mean_squared_error: 5387159040.0000
+[32m+          Epoch 120/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5369127215.6932 - mean_absolute_error: 52442.9219 - mean_squared_error: 5369127936.0000
+[32m+          Epoch 121/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5352916674.9808 - mean_absolute_error: 52390.3945 - mean_squared_error: 5352916992.0000
+[32m+          Epoch 122/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5333675675.7041 - mean_absolute_error: 52305.9062 - mean_squared_error: 5333675520.0000
+[32m+          Epoch 123/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5316767189.2164 - mean_absolute_error: 52034.3672 - mean_squared_error: 5316767744.0000
+[32m+          Epoch 124/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5300653841.5342 - mean_absolute_error: 52098.0312 - mean_squared_error: 5300653056.0000
+[32m+          Epoch 125/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5279257532.6685 - mean_absolute_error: 51868.0859 - mean_squared_error: 5279257088.0000
+[32m+          Epoch 126/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 5261653415.6274 - mean_absolute_error: 51795.5742 - mean_squared_error: 5261653504.0000
+[32m+          Epoch 127/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5244345732.5589 - mean_absolute_error: 51676.3359 - mean_squared_error: 5244345344.0000
+[32m+          Epoch 128/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5227065018.5644 - mean_absolute_error: 51785.4258 - mean_squared_error: 5227064320.0000
+[32m+          Epoch 129/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5207347672.0219 - mean_absolute_error: 51494.5078 - mean_squared_error: 5207347712.0000
+[32m+          Epoch 130/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5189532662.1808 - mean_absolute_error: 51455.3477 - mean_squared_error: 5189534208.0000
+[32m+          Epoch 131/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5170923919.0795 - mean_absolute_error: 51422.8125 - mean_squared_error: 5170923520.0000
+[32m+          Epoch 132/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5152741086.3342 - mean_absolute_error: 51017.6484 - mean_squared_error: 5152741376.0000
+[32m+          Epoch 133/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 5134424329.1178 - mean_absolute_error: 50943.7031 - mean_squared_error: 5134424576.0000
+[32m+          Epoch 134/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5115949458.5863 - mean_absolute_error: 50988.8672 - mean_squared_error: 5115949568.0000
+[32m+          Epoch 135/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5098737484.4493 - mean_absolute_error: 50829.0469 - mean_squared_error: 5098737152.0000
+[32m+          Epoch 136/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5081526060.1863 - mean_absolute_error: 50831.6992 - mean_squared_error: 5081525760.0000
+[32m+          Epoch 137/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5061296135.7151 - mean_absolute_error: 50800.8711 - mean_squared_error: 5061295616.0000
+[32m+          Epoch 138/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5043547679.5616 - mean_absolute_error: 50456.9844 - mean_squared_error: 5043548160.0000
+[32m+          Epoch 139/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 5025268787.9014 - mean_absolute_error: 50502.9219 - mean_squared_error: 5025268736.0000
+[32m+          Epoch 140/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 5004930750.7726 - mean_absolute_error: 50277.8125 - mean_squared_error: 5004930560.0000
+[32m+          Epoch 141/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 4987197167.8685 - mean_absolute_error: 50318.2344 - mean_squared_error: 4987197440.0000
+[32m+          Epoch 142/500
+[32m+          1460/1460 [==============================] - 0s 95us/sample - loss: 4966576711.8904 - mean_absolute_error: 50081.2070 - mean_squared_error: 4966576640.0000
+[32m+          Epoch 143/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4948879977.9068 - mean_absolute_error: 49950.3516 - mean_squared_error: 4948879872.0000
+[32m+          Epoch 144/500
+[32m+          1460/1460 [==============================] - 0s 97us/sample - loss: 4929880869.1726 - mean_absolute_error: 49862.3359 - mean_squared_error: 4929881600.0000
+[32m+          Epoch 145/500
+[32m+      output 3:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4911381550.2904 - mean_absolute_error: 49849.7969 - mean_squared_error: 4911380992.0000
+[32m+          Epoch 146/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4890646607.2548 - mean_absolute_error: 49596.0586 - mean_squared_error: 4890647040.0000
+[32m+          Epoch 147/500
+[32m+          1460/1460 [==============================] - 0s 97us/sample - loss: 4873711154.8493 - mean_absolute_error: 49627.6211 - mean_squared_error: 4873711616.0000
+[32m+          Epoch 148/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4853393879.6712 - mean_absolute_error: 49262.2461 - mean_squared_error: 4853393408.0000
+[32m+          Epoch 149/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4834620743.5397 - mean_absolute_error: 49316.2617 - mean_squared_error: 4834621440.0000
+[32m+          Epoch 150/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4813918123.8356 - mean_absolute_error: 49243.1250 - mean_squared_error: 4813918208.0000
+[32m+          Epoch 151/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4794488750.6411 - mean_absolute_error: 49111.8516 - mean_squared_error: 4794489344.0000
+[32m+          Epoch 152/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4776685997.2384 - mean_absolute_error: 48971.1523 - mean_squared_error: 4776685056.0000
+[32m+          Epoch 153/500
+[32m+          1460/1460 [==============================] - 0s 96us/sample - loss: 4757273817.4247 - mean_absolute_error: 48901.8359 - mean_squared_error: 4757274112.0000
+[32m+          Epoch 154/500
+[32m+          1460/1460 [==============================] - 0s 88us/sample - loss: 4736040956.4932 - mean_absolute_error: 48752.7930 - mean_squared_error: 4736040960.0000
+[32m+          Epoch 155/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4716945501.2822 - mean_absolute_error: 48662.5156 - mean_squared_error: 4716945408.0000
+[32m+          Epoch 156/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4700054091.7479 - mean_absolute_error: 48362.9531 - mean_squared_error: 4700054528.0000
+[32m+          Epoch 157/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4680497791.6493 - mean_absolute_error: 48234.4883 - mean_squared_error: 4680497664.0000
+[32m+          Epoch 158/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4660934041.6000 - mean_absolute_error: 48495.2930 - mean_squared_error: 4660934144.0000
+[32m+          Epoch 159/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4641902840.9863 - mean_absolute_error: 47967.3359 - mean_squared_error: 4641903616.0000
+[32m+          Epoch 160/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4622488469.0411 - mean_absolute_error: 48222.0234 - mean_squared_error: 4622488576.0000
+[32m+          Epoch 161/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 4600614202.2137 - mean_absolute_error: 47847.8320 - mean_squared_error: 4600614400.0000
+[32m+          Epoch 162/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 4580136659.4630 - mean_absolute_error: 47709.6602 - mean_squared_error: 4580135936.0000
+[32m+          Epoch 163/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 4562371474.5863 - mean_absolute_error: 47659.1523 - mean_squared_error: 4562372096.0000
+[32m+          Epoch 164/500
+[32m+          1460/1460 [==============================] - 0s 97us/sample - loss: 4542460877.5014 - mean_absolute_error: 47551.0039 - mean_squared_error: 4542460928.0000
+[32m+          Epoch 165/500
+[32m+          1460/1460 [==============================] - 0s 96us/sample - loss: 4521167714.8932 - mean_absolute_error: 47453.1875 - mean_squared_error: 4521167872.0000
+[32m+          Epoch 166/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 4501140933.0849 - mean_absolute_error: 47469.8047 - mean_squared_error: 4501140480.0000
+[32m+          Epoch 167/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 4481075888.7452 - mean_absolute_error: 47172.8594 - mean_squared_error: 4481076736.0000
+[32m+          Epoch 168/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4462859736.7233 - mean_absolute_error: 46981.2383 - mean_squared_error: 4462859776.0000
+[32m+          Epoch 169/500
+[32m+          1460/1460 [==============================] - 0s 95us/sample - loss: 4441554155.6603 - mean_absolute_error: 47127.1602 - mean_squared_error: 4441553920.0000
+[32m+          Epoch 170/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4422189151.3863 - mean_absolute_error: 46948.9961 - mean_squared_error: 4422189056.0000
+[32m+          Epoch 171/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4404217375.9123 - mean_absolute_error: 46645.2344 - mean_squared_error: 4404216832.0000
+[32m+          Epoch 172/500
+[32m+          1460/1460 [==============================] - 0s 99us/sample - loss: 4381420924.1425 - mean_absolute_error: 46595.0195 - mean_squared_error: 4381421568.0000
+[32m+          Epoch 173/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 4364404758.4438 - mean_absolute_error: 46424.3086 - mean_squared_error: 4364404736.0000
+[32m+          Epoch 174/500
+[32m+          1460/1460 [==============================] - 0s 98us/sample - loss: 4345046049.6658 - mean_absolute_error: 46695.6172 - mean_squared_error: 4345046016.0000
+[32m+          Epoch 175/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4322320114.6740 - mean_absolute_error: 46231.7695 - mean_squared_error: 4322320896.0000
+[32m+          Epoch 176/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4302355766.7068 - mean_absolute_error: 46219.6367 - mean_squared_error: 4302355456.0000
+[32m+          Epoch 177/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4281652331.3096 - mean_absolute_error: 45984.2695 - mean_squared_error: 4281652480.0000
+[32m+          Epoch 178/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4262759777.4904 - mean_absolute_error: 45855.4570 - mean_squared_error: 4262759424.0000
+[32m+          Epoch 179/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 4241914067.8137 - mean_absolute_error: 45828.7930 - mean_squared_error: 4241913600.0000
+[32m+          Epoch 180/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4222473157.7863 - mean_absolute_error: 45747.0234 - mean_squared_error: 4222472960.0000
+[32m+          Epoch 181/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 4205176261.7863 - mean_absolute_error: 45719.0039 - mean_squared_error: 4205176064.0000
+[32m+          Epoch 182/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 4182450962.9370 - mean_absolute_error: 45551.0312 - mean_squared_error: 4182450688.0000
+[32m+          Epoch 183/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4164547984.4822 - mean_absolute_error: 45286.5938 - mean_squared_error: 4164548608.0000
+[32m+          Epoch 184/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4146823712.2630 - mean_absolute_error: 45377.1133 - mean_squared_error: 4146823936.0000
+[32m+          Epoch 185/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 4125897152.1753 - mean_absolute_error: 45108.5742 - mean_squared_error: 4125897216.0000
+[32m+          Epoch 186/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4106816859.8795 - mean_absolute_error: 44891.6680 - mean_squared_error: 4106816512.0000
+[32m+          Epoch 187/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4085981231.6932 - mean_absolute_error: 45029.0586 - mean_squared_error: 4085981184.0000
+[32m+          Epoch 188/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4066606674.7616 - mean_absolute_error: 44916.9844 - mean_squared_error: 4066606848.0000
+[32m+          Epoch 189/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4048402670.4658 - mean_absolute_error: 44964.7578 - mean_squared_error: 4048403200.0000
+[32m+          Epoch 190/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4027735734.3562 - mean_absolute_error: 44705.6055 - mean_squared_error: 4027735552.0000
+[32m+          Epoch 191/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 4009246857.8192 - mean_absolute_error: 44404.5391 - mean_squared_error: 4009247232.0000
+[32m+          Epoch 192/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3989584463.9562 - mean_absolute_error: 44440.2266 - mean_squared_error: 3989584896.0000
+[32m+          Epoch 193/500
+[32m+      output 4:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 3971425460.9534 - mean_absolute_error: 44425.0508 - mean_squared_error: 3971424768.0000
+[32m+          Epoch 194/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3951789712.4822 - mean_absolute_error: 44206.2500 - mean_squared_error: 3951789824.0000
+[32m+          Epoch 195/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3931797157.5233 - mean_absolute_error: 43975.3477 - mean_squared_error: 3931796480.0000
+[32m+          Epoch 196/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3914727013.6986 - mean_absolute_error: 43942.3789 - mean_squared_error: 3914727424.0000
+[32m+          Epoch 197/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3895119266.7178 - mean_absolute_error: 43800.7695 - mean_squared_error: 3895119104.0000
+[32m+          Epoch 198/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 3877320953.6877 - mean_absolute_error: 43922.5508 - mean_squared_error: 3877321728.0000
+[32m+          Epoch 199/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 3857839839.3863 - mean_absolute_error: 43653.7812 - mean_squared_error: 3857839616.0000
+[32m+          Epoch 200/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3837389173.1288 - mean_absolute_error: 43520.7227 - mean_squared_error: 3837388800.0000
+[32m+          Epoch 201/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3819366158.7288 - mean_absolute_error: 43362.0195 - mean_squared_error: 3819366144.0000
+[32m+          Epoch 202/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3801203862.0932 - mean_absolute_error: 43282.1055 - mean_squared_error: 3801203968.0000
+[32m+          Epoch 203/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3782370152.5041 - mean_absolute_error: 43172.1250 - mean_squared_error: 3782369792.0000
+[32m+          Epoch 204/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3763215773.8082 - mean_absolute_error: 43120.3008 - mean_squared_error: 3763215616.0000
+[32m+          Epoch 205/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3747654654.5973 - mean_absolute_error: 43216.4375 - mean_squared_error: 3747654144.0000
+[32m+          Epoch 206/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3728247646.6849 - mean_absolute_error: 42885.3047 - mean_squared_error: 3728247552.0000
+[32m+          Epoch 207/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3710702690.8932 - mean_absolute_error: 42822.6836 - mean_squared_error: 3710702592.0000
+[32m+          Epoch 208/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3693014884.2959 - mean_absolute_error: 42639.3242 - mean_squared_error: 3693014272.0000
+[32m+          Epoch 209/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3675805743.6932 - mean_absolute_error: 42477.0781 - mean_squared_error: 3675805184.0000
+[32m+          Epoch 210/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3656315702.0055 - mean_absolute_error: 42527.2734 - mean_squared_error: 3656316160.0000
+[32m+          Epoch 211/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3639912517.4356 - mean_absolute_error: 42277.4180 - mean_squared_error: 3639912192.0000
+[32m+          Epoch 212/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3622210809.6877 - mean_absolute_error: 42242.8867 - mean_squared_error: 3622211072.0000
+[32m+          Epoch 213/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 3604666968.0219 - mean_absolute_error: 42169.0703 - mean_squared_error: 3604667136.0000
+[32m+          Epoch 214/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3588110806.6192 - mean_absolute_error: 42083.8672 - mean_squared_error: 3588111360.0000
+[32m+          Epoch 215/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3572538163.2000 - mean_absolute_error: 41664.5469 - mean_squared_error: 3572538624.0000
+[32m+          Epoch 216/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3552566479.6055 - mean_absolute_error: 41811.0586 - mean_squared_error: 3552565760.0000
+[32m+          Epoch 217/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3534702493.8082 - mean_absolute_error: 41724.2695 - mean_squared_error: 3534702592.0000
+[32m+          Epoch 218/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3518760376.1096 - mean_absolute_error: 41469.3984 - mean_squared_error: 3518760704.0000
+[32m+          Epoch 219/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3501923628.1863 - mean_absolute_error: 41424.2070 - mean_squared_error: 3501923840.0000
+[32m+          Epoch 220/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 3484414215.3644 - mean_absolute_error: 41230.9492 - mean_squared_error: 3484414720.0000
+[32m+          Epoch 221/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 3468292633.2493 - mean_absolute_error: 41066.4180 - mean_squared_error: 3468292608.0000
+[32m+          Epoch 222/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3453670415.4301 - mean_absolute_error: 41213.2070 - mean_squared_error: 3453670400.0000
+[32m+          Epoch 223/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3435979980.8000 - mean_absolute_error: 40927.8633 - mean_squared_error: 3435979520.0000
+[32m+          Epoch 224/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3421182549.9178 - mean_absolute_error: 40781.0000 - mean_squared_error: 3421182720.0000
+[32m+          Epoch 225/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3403587177.2055 - mean_absolute_error: 40758.6367 - mean_squared_error: 3403587328.0000
+[32m+          Epoch 226/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3386538183.8904 - mean_absolute_error: 40658.5195 - mean_squared_error: 3386537728.0000
+[32m+          Epoch 227/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3372737073.0959 - mean_absolute_error: 40321.0938 - mean_squared_error: 3372736768.0000
+[32m+          Epoch 228/500
+[32m+          1460/1460 [==============================] - 0s 88us/sample - loss: 3355221094.4000 - mean_absolute_error: 40389.3164 - mean_squared_error: 3355220992.0000
+[32m+          Epoch 229/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3339606244.6466 - mean_absolute_error: 40390.4570 - mean_squared_error: 3339605760.0000
+[32m+          Epoch 230/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3325030292.6904 - mean_absolute_error: 40026.7227 - mean_squared_error: 3325030656.0000
+[32m+          Epoch 231/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 3309068921.3370 - mean_absolute_error: 40140.5820 - mean_squared_error: 3309069568.0000
+[32m+          Epoch 232/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3293559443.9890 - mean_absolute_error: 39991.1562 - mean_squared_error: 3293559552.0000
+[32m+          Epoch 233/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 3278603108.9973 - mean_absolute_error: 39868.3320 - mean_squared_error: 3278603520.0000
+[32m+          Epoch 234/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3265221528.1973 - mean_absolute_error: 39512.6719 - mean_squared_error: 3265221376.0000
+[32m+          Epoch 235/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3249958736.6575 - mean_absolute_error: 39792.8125 - mean_squared_error: 3249958656.0000
+[32m+          Epoch 236/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3235783926.5315 - mean_absolute_error: 39337.9375 - mean_squared_error: 3235783680.0000
+[32m+          Epoch 237/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3220361158.8384 - mean_absolute_error: 39546.9883 - mean_squared_error: 3220361472.0000
+[32m+          Epoch 238/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3204481541.6110 - mean_absolute_error: 39191.7188 - mean_squared_error: 3204481536.0000
+[32m+          Epoch 239/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3190670223.0795 - mean_absolute_error: 39127.1289 - mean_squared_error: 3190669824.0000
+[32m+          Epoch 240/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3177337091.5068 - mean_absolute_error: 39022.6367 - mean_squared_error: 3177337088.0000
+[32m+          Epoch 241/500
+[32m+      output 5:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3163386913.6658 - mean_absolute_error: 38940.1328 - mean_squared_error: 3163387136.0000
+[32m+          Epoch 242/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3150266804.2521 - mean_absolute_error: 38640.7852 - mean_squared_error: 3150266624.0000
+[32m+          Epoch 243/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 3135641147.9671 - mean_absolute_error: 38830.1094 - mean_squared_error: 3135641600.0000
+[32m+          Epoch 244/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 3123470737.8849 - mean_absolute_error: 38656.4258 - mean_squared_error: 3123470592.0000
+[32m+          Epoch 245/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3106124643.2438 - mean_absolute_error: 38530.7891 - mean_squared_error: 3106123776.0000
+[32m+          Epoch 246/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3095546079.0356 - mean_absolute_error: 38463.3398 - mean_squared_error: 3095546368.0000
+[32m+          Epoch 247/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 3081498365.8959 - mean_absolute_error: 38325.4297 - mean_squared_error: 3081498368.0000
+[32m+          Epoch 248/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3068159653.5233 - mean_absolute_error: 38253.2422 - mean_squared_error: 3068160000.0000
+[32m+          Epoch 249/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 3054469054.7726 - mean_absolute_error: 38095.4102 - mean_squared_error: 3054469120.0000
+[32m+          Epoch 250/500
+[32m+          1460/1460 [==============================] - 0s 97us/sample - loss: 3041511653.6986 - mean_absolute_error: 37981.4023 - mean_squared_error: 3041511424.0000
+[32m+          Epoch 251/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 3029197067.9233 - mean_absolute_error: 38042.7539 - mean_squared_error: 3029197056.0000
+[32m+          Epoch 252/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3016922659.7699 - mean_absolute_error: 37825.5352 - mean_squared_error: 3016922624.0000
+[32m+          Epoch 253/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 3003299663.2548 - mean_absolute_error: 37683.1406 - mean_squared_error: 3003299584.0000
+[32m+          Epoch 254/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2990874698.6959 - mean_absolute_error: 37635.0234 - mean_squared_error: 2990874368.0000
+[32m+          Epoch 255/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2980766264.1096 - mean_absolute_error: 37489.2852 - mean_squared_error: 2980766208.0000
+[32m+          Epoch 256/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2965549445.9616 - mean_absolute_error: 37422.0898 - mean_squared_error: 2965549056.0000
+[32m+          Epoch 257/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2953639526.4000 - mean_absolute_error: 37263.2578 - mean_squared_error: 2953639936.0000
+[32m+          Epoch 258/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2940330956.8000 - mean_absolute_error: 37209.6914 - mean_squared_error: 2940330752.0000
+[32m+          Epoch 259/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2929033106.5863 - mean_absolute_error: 37142.5469 - mean_squared_error: 2929032960.0000
+[32m+          Epoch 260/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2916010067.4630 - mean_absolute_error: 37080.3125 - mean_squared_error: 2916010496.0000
+[32m+          Epoch 261/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2905092253.8082 - mean_absolute_error: 36955.6094 - mean_squared_error: 2905092096.0000
+[32m+          Epoch 262/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2892632413.2822 - mean_absolute_error: 36705.7656 - mean_squared_error: 2892632320.0000
+[32m+          Epoch 263/500
+[32m+          1460/1460 [==============================] - 0s 96us/sample - loss: 2879673764.1205 - mean_absolute_error: 36837.2188 - mean_squared_error: 2879673856.0000
+[32m+          Epoch 264/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 2865823139.4192 - mean_absolute_error: 36642.0312 - mean_squared_error: 2865822976.0000
+[32m+          Epoch 265/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2857166337.4027 - mean_absolute_error: 36421.6836 - mean_squared_error: 2857166592.0000s - loss: 2793788449.6842 - mean_absolute_error: 36738.1562 - mean_squared_error: 2793788160.
+[32m+          Epoch 266/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2846446026.6959 - mean_absolute_error: 36459.5078 - mean_squared_error: 2846445824.0000
+[32m+          Epoch 267/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2831701699.6822 - mean_absolute_error: 36246.6797 - mean_squared_error: 2831702016.0000
+[32m+          Epoch 268/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2821361979.9671 - mean_absolute_error: 36462.9883 - mean_squared_error: 2821361664.0000
+[32m+          Epoch 269/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2814261731.2438 - mean_absolute_error: 35900.0781 - mean_squared_error: 2814261504.0000
+[32m+          Epoch 270/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2798305739.7479 - mean_absolute_error: 36100.7188 - mean_squared_error: 2798305792.0000
+[32m+          Epoch 271/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2787078713.5123 - mean_absolute_error: 35994.9141 - mean_squared_error: 2787078656.0000
+[32m+          Epoch 272/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2778422304.2630 - mean_absolute_error: 35797.7109 - mean_squared_error: 2778422784.0000
+[32m+          Epoch 273/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2766916307.4630 - mean_absolute_error: 35792.9570 - mean_squared_error: 2766916096.0000
+[32m+          Epoch 274/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2755425850.9151 - mean_absolute_error: 35852.3750 - mean_squared_error: 2755425792.0000
+[32m+          Epoch 275/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2745794423.2329 - mean_absolute_error: 35592.6445 - mean_squared_error: 2745794304.0000
+[32m+          Epoch 276/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2735026623.8247 - mean_absolute_error: 35472.3633 - mean_squared_error: 2735026688.0000
+[32m+          Epoch 277/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2725601811.9890 - mean_absolute_error: 35476.3594 - mean_squared_error: 2725601792.0000
+[32m+          Epoch 278/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2716042606.1151 - mean_absolute_error: 35255.8008 - mean_squared_error: 2716042496.0000
+[32m+          Epoch 279/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2705240288.4384 - mean_absolute_error: 35305.0234 - mean_squared_error: 2705239808.0000
+[32m+          Epoch 280/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2699076317.9836 - mean_absolute_error: 35119.2070 - mean_squared_error: 2699075840.0000
+[32m+          Epoch 281/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2689675366.4000 - mean_absolute_error: 35385.5742 - mean_squared_error: 2689675008.0000
+[32m+          Epoch 282/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 2676866096.5699 - mean_absolute_error: 35066.0430 - mean_squared_error: 2676866304.0000
+[32m+          Epoch 283/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 2669356765.6329 - mean_absolute_error: 34733.9336 - mean_squared_error: 2669356544.0000
+[32m+          Epoch 284/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2660440903.5397 - mean_absolute_error: 34828.5664 - mean_squared_error: 2660440832.0000
+[32m+          Epoch 285/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2649806195.0247 - mean_absolute_error: 34849.2617 - mean_squared_error: 2649806080.0000
+[32m+          Epoch 286/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 2639455201.1397 - mean_absolute_error: 34743.3477 - mean_squared_error: 2639454976.0000
+[32m+          Epoch 287/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2631136520.4164 - mean_absolute_error: 34643.7734 - mean_squared_error: 2631136512.0000
+[32m+          Epoch 288/500
+[32m+      output 6:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2620135345.4466 - mean_absolute_error: 34498.8672 - mean_squared_error: 2620134912.0000
+[32m+          Epoch 289/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2611646713.6877 - mean_absolute_error: 34427.9180 - mean_squared_error: 2611646720.0000
+[32m+          Epoch 290/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2603026241.2274 - mean_absolute_error: 34398.5547 - mean_squared_error: 2603026176.0000
+[32m+          Epoch 291/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2596558488.8986 - mean_absolute_error: 34157.5039 - mean_squared_error: 2596558848.0000
+[32m+          Epoch 292/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2584757682.8493 - mean_absolute_error: 34360.8047 - mean_squared_error: 2584757760.0000
+[32m+          Epoch 293/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2576317775.9562 - mean_absolute_error: 34218.0430 - mean_squared_error: 2576317952.0000
+[32m+          Epoch 294/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2568783265.3151 - mean_absolute_error: 34215.1172 - mean_squared_error: 2568783616.0000
+[32m+          Epoch 295/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2558927302.4877 - mean_absolute_error: 33827.8945 - mean_squared_error: 2558927104.0000
+[32m+          Epoch 296/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 2551317056.8767 - mean_absolute_error: 33948.2695 - mean_squared_error: 2551316736.0000
+[32m+          Epoch 297/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2543624218.6521 - mean_absolute_error: 33863.9844 - mean_squared_error: 2543623936.0000
+[32m+          Epoch 298/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2532789489.2712 - mean_absolute_error: 33763.6797 - mean_squared_error: 2532789248.0000
+[32m+          Epoch 299/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2527986029.4137 - mean_absolute_error: 33833.1836 - mean_squared_error: 2527985920.0000
+[32m+          Epoch 300/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2519231532.8877 - mean_absolute_error: 33560.0234 - mean_squared_error: 2519231232.0000
+[32m+          Epoch 301/500
+[32m+          1460/1460 [==============================] - 0s 88us/sample - loss: 2511619772.6685 - mean_absolute_error: 33692.4609 - mean_squared_error: 2511620096.0000
+[32m+          Epoch 302/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2504122739.3753 - mean_absolute_error: 33419.9961 - mean_squared_error: 2504122624.0000
+[32m+          Epoch 303/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2493317735.8027 - mean_absolute_error: 33445.8633 - mean_squared_error: 2493317888.0000
+[32m+          Epoch 304/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2487805470.1589 - mean_absolute_error: 33500.4883 - mean_squared_error: 2487805184.0000
+[32m+          Epoch 305/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2478777519.3425 - mean_absolute_error: 33369.4258 - mean_squared_error: 2478777600.0000
+[32m+          Epoch 306/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2472747298.0164 - mean_absolute_error: 33328.1797 - mean_squared_error: 2472747520.0000
+[32m+          Epoch 307/500
+[32m+          1460/1460 [==============================] - 0s 95us/sample - loss: 2465198676.1644 - mean_absolute_error: 33065.7500 - mean_squared_error: 2465198848.0000
+[32m+          Epoch 308/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2458092805.6110 - mean_absolute_error: 33246.3867 - mean_squared_error: 2458092800.0000
+[32m+          Epoch 309/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2449584672.2630 - mean_absolute_error: 33134.1289 - mean_squared_error: 2449584640.0000
+[32m+          Epoch 310/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2442588532.4274 - mean_absolute_error: 32938.6328 - mean_squared_error: 2442588672.0000
+[32m+          Epoch 311/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2437862688.9644 - mean_absolute_error: 33080.9766 - mean_squared_error: 2437862912.0000
+[32m+          Epoch 312/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2428862745.2493 - mean_absolute_error: 32879.2695 - mean_squared_error: 2428862464.0000
+[32m+          Epoch 313/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2423731467.2219 - mean_absolute_error: 32857.2734 - mean_squared_error: 2423731456.0000
+[32m+          Epoch 314/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2416191091.7260 - mean_absolute_error: 32751.5781 - mean_squared_error: 2416191232.0000
+[32m+          Epoch 315/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2409417901.9397 - mean_absolute_error: 32816.0469 - mean_squared_error: 2409418240.0000
+[32m+          Epoch 316/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2402040483.7699 - mean_absolute_error: 32623.4902 - mean_squared_error: 2402040320.0000
+[32m+          Epoch 317/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2395714025.9068 - mean_absolute_error: 32635.1953 - mean_squared_error: 2395713792.0000
+[32m+          Epoch 318/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2387619382.7068 - mean_absolute_error: 32561.2266 - mean_squared_error: 2387619328.0000
+[32m+          Epoch 319/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2382130810.7397 - mean_absolute_error: 32517.7539 - mean_squared_error: 2382130944.0000
+[32m+          Epoch 320/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2375973346.1918 - mean_absolute_error: 32503.9590 - mean_squared_error: 2375973632.0000
+[32m+          Epoch 321/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2370002678.8822 - mean_absolute_error: 32469.9062 - mean_squared_error: 2370002944.0000
+[32m+          Epoch 322/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 2361990124.3616 - mean_absolute_error: 32242.1816 - mean_squared_error: 2361989888.0000
+[32m+          Epoch 323/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2355626928.7452 - mean_absolute_error: 32201.6055 - mean_squared_error: 2355626496.0000
+[32m+          Epoch 324/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2349937561.2493 - mean_absolute_error: 32347.7461 - mean_squared_error: 2349937152.0000
+[32m+          Epoch 325/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2342714131.9890 - mean_absolute_error: 32174.3008 - mean_squared_error: 2342714368.0000
+[32m+          Epoch 326/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2336287315.4630 - mean_absolute_error: 32051.0391 - mean_squared_error: 2336287232.0000
+[32m+          Epoch 327/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2331225044.1644 - mean_absolute_error: 32106.6113 - mean_squared_error: 2331225088.0000
+[32m+          Epoch 328/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2324768115.7260 - mean_absolute_error: 32071.1426 - mean_squared_error: 2324768000.0000
+[32m+          Epoch 329/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2318419458.4548 - mean_absolute_error: 31991.4160 - mean_squared_error: 2318419456.0000
+[32m+          Epoch 330/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 2317204719.8685 - mean_absolute_error: 31952.1309 - mean_squared_error: 2317204736.0000
+[32m+          Epoch 331/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2306902508.0110 - mean_absolute_error: 31953.3789 - mean_squared_error: 2306902528.0000
+[32m+          Epoch 332/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2299630363.0027 - mean_absolute_error: 31915.3203 - mean_squared_error: 2299630848.0000
+[32m+          Epoch 333/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2294443518.0712 - mean_absolute_error: 31727.6680 - mean_squared_error: 2294443264.0000
+[32m+          Epoch 334/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2288927418.9151 - mean_absolute_error: 31770.3379 - mean_squared_error: 2288927232.0000
+[32m+          Epoch 335/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2283983994.0384 - mean_absolute_error: 31693.8047 - mean_squared_error: 2283984384.0000
+[32m+          Epoch 336/500
+[32m+      output 7:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2276161373.2822 - mean_absolute_error: 31709.0469 - mean_squared_error: 2276161280.0000
+[32m+          Epoch 337/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 2273561834.2575 - mean_absolute_error: 31613.2598 - mean_squared_error: 2273561856.0000
+[32m+          Epoch 338/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2263318569.7315 - mean_absolute_error: 31619.2031 - mean_squared_error: 2263318784.0000
+[32m+          Epoch 339/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2257039497.4685 - mean_absolute_error: 31462.1270 - mean_squared_error: 2257039360.0000
+[32m+          Epoch 340/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2251587771.2658 - mean_absolute_error: 31431.5020 - mean_squared_error: 2251587584.0000
+[32m+          Epoch 341/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 2245012989.1945 - mean_absolute_error: 31465.7695 - mean_squared_error: 2245012992.0000
+[32m+          Epoch 342/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2239196610.9808 - mean_absolute_error: 31321.5449 - mean_squared_error: 2239196672.0000
+[32m+          Epoch 343/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2232611625.3808 - mean_absolute_error: 31267.3203 - mean_squared_error: 2232611584.0000
+[32m+          Epoch 344/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2227308936.0658 - mean_absolute_error: 31290.7285 - mean_squared_error: 2227309312.0000
+[32m+          Epoch 345/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2220973041.9726 - mean_absolute_error: 31275.3242 - mean_squared_error: 2220973312.0000
+[32m+          Epoch 346/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2215260182.4438 - mean_absolute_error: 31155.1914 - mean_squared_error: 2215260160.0000
+[32m+          Epoch 347/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2208992765.1945 - mean_absolute_error: 31102.1641 - mean_squared_error: 2208992768.0000
+[32m+          Epoch 348/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2207190485.2164 - mean_absolute_error: 31205.3867 - mean_squared_error: 2207189760.0000
+[32m+          Epoch 349/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2196901358.4658 - mean_absolute_error: 31019.5371 - mean_squared_error: 2196901120.0000
+[32m+          Epoch 350/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2192048074.6959 - mean_absolute_error: 30948.8027 - mean_squared_error: 2192048128.0000
+[32m+          Epoch 351/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2185274980.2959 - mean_absolute_error: 30936.6738 - mean_squared_error: 2185275136.0000
+[32m+          Epoch 352/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2179966194.8493 - mean_absolute_error: 30836.1504 - mean_squared_error: 2179965952.0000
+[32m+          Epoch 353/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2176938828.4493 - mean_absolute_error: 30786.1367 - mean_squared_error: 2176938752.0000
+[32m+          Epoch 354/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2169565475.7699 - mean_absolute_error: 30832.0625 - mean_squared_error: 2169565440.0000
+[32m+          Epoch 355/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2163806075.0904 - mean_absolute_error: 30804.0527 - mean_squared_error: 2163806464.0000
+[32m+          Epoch 356/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2158675495.1890 - mean_absolute_error: 30737.1680 - mean_squared_error: 2158675968.0000
+[32m+          Epoch 357/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2152789024.6137 - mean_absolute_error: 30636.7832 - mean_squared_error: 2152788736.0000
+[32m+          Epoch 358/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2147250906.1260 - mean_absolute_error: 30660.5449 - mean_squared_error: 2147250816.0000
+[32m+          Epoch 359/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2141214625.6658 - mean_absolute_error: 30566.7676 - mean_squared_error: 2141214464.0000
+[32m+          Epoch 360/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2136469338.4767 - mean_absolute_error: 30546.7559 - mean_squared_error: 2136469248.0000
+[32m+          Epoch 361/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2131356999.5397 - mean_absolute_error: 30467.1309 - mean_squared_error: 2131357184.0000
+[32m+          Epoch 362/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2126005921.3151 - mean_absolute_error: 30450.4219 - mean_squared_error: 2126005760.0000
+[32m+          Epoch 363/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2121487559.8904 - mean_absolute_error: 30394.3750 - mean_squared_error: 2121487744.0000
+[32m+          Epoch 364/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 2118033225.6438 - mean_absolute_error: 30301.5430 - mean_squared_error: 2118033408.0000
+[32m+          Epoch 365/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2113098345.2055 - mean_absolute_error: 30358.3828 - mean_squared_error: 2113098624.0000
+[32m+          Epoch 366/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2104866122.3452 - mean_absolute_error: 30338.2402 - mean_squared_error: 2104865920.0000
+[32m+          Epoch 367/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2100914253.1507 - mean_absolute_error: 30346.2930 - mean_squared_error: 2100914304.0000
+[32m+          Epoch 368/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2095528383.4740 - mean_absolute_error: 30163.5020 - mean_squared_error: 2095528320.0000
+[32m+          Epoch 369/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2089243413.0411 - mean_absolute_error: 30147.4336 - mean_squared_error: 2089243136.0000
+[32m+          Epoch 370/500
+[32m+          1460/1460 [==============================] - 0s 95us/sample - loss: 2083390158.9041 - mean_absolute_error: 30140.1484 - mean_squared_error: 2083390208.0000s - loss: 2284610762.1053 - mean_absolute_error: 30271.6289 - mean_squared_error: 2284610560.
+[32m+          Epoch 371/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2078871049.8192 - mean_absolute_error: 29991.3125 - mean_squared_error: 2078871168.0000
+[32m+          Epoch 372/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 2072938773.0411 - mean_absolute_error: 30009.7148 - mean_squared_error: 2072939008.0000
+[32m+          Epoch 373/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2069406630.9260 - mean_absolute_error: 29973.8223 - mean_squared_error: 2069406592.0000
+[32m+          Epoch 374/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2062868686.2027 - mean_absolute_error: 29944.5176 - mean_squared_error: 2062868352.0000
+[32m+          Epoch 375/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2058444257.1397 - mean_absolute_error: 29900.6582 - mean_squared_error: 2058444416.0000
+[32m+          Epoch 376/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2051645079.4959 - mean_absolute_error: 29870.1016 - mean_squared_error: 2051644928.0000
+[32m+          Epoch 377/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2046871211.1342 - mean_absolute_error: 29780.6191 - mean_squared_error: 2046871296.0000
+[32m+          Epoch 378/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2043172657.7973 - mean_absolute_error: 29725.5762 - mean_squared_error: 2043172992.0000
+[32m+          Epoch 379/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2037557720.3726 - mean_absolute_error: 29790.4746 - mean_squared_error: 2037557504.0000
+[32m+          Epoch 380/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2035538333.1068 - mean_absolute_error: 29712.3379 - mean_squared_error: 2035538688.0000
+[32m+          Epoch 381/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2026452496.4822 - mean_absolute_error: 29659.1504 - mean_squared_error: 2026452608.0000
+[32m+          Epoch 382/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2022430453.1288 - mean_absolute_error: 29606.5645 - mean_squared_error: 2022430336.0000
+[32m+          Epoch 383/500
+[32m+      output 8:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2017079420.4932 - mean_absolute_error: 29516.2910 - mean_squared_error: 2017079552.0000
+[32m+          Epoch 384/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2012084047.2548 - mean_absolute_error: 29491.3945 - mean_squared_error: 2012084096.0000
+[32m+          Epoch 385/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 2007182962.3233 - mean_absolute_error: 29428.4902 - mean_squared_error: 2007182976.0000
+[32m+          Epoch 386/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 2001141364.7781 - mean_absolute_error: 29445.0566 - mean_squared_error: 2001141376.0000
+[32m+          Epoch 387/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 2001475069.1945 - mean_absolute_error: 29406.1836 - mean_squared_error: 2001475200.0000
+[32m+          Epoch 388/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1990517710.9041 - mean_absolute_error: 29331.2930 - mean_squared_error: 1990517504.0000
+[32m+          Epoch 389/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1989797719.6712 - mean_absolute_error: 29282.7070 - mean_squared_error: 1989797760.0000
+[32m+          Epoch 390/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1981905369.4247 - mean_absolute_error: 29260.3105 - mean_squared_error: 1981905408.0000
+[32m+          Epoch 391/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1981656521.2932 - mean_absolute_error: 29195.8281 - mean_squared_error: 1981656576.0000
+[32m+          Epoch 392/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1971990191.3425 - mean_absolute_error: 29169.7539 - mean_squared_error: 1971990272.0000
+[32m+          Epoch 393/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1968252324.8219 - mean_absolute_error: 29147.8965 - mean_squared_error: 1968252416.0000
+[32m+          Epoch 394/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1964953711.5178 - mean_absolute_error: 29104.0195 - mean_squared_error: 1964954240.0000
+[32m+          Epoch 395/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1960394687.4740 - mean_absolute_error: 29063.7539 - mean_squared_error: 1960395008.0000
+[32m+          Epoch 396/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 1954859056.3945 - mean_absolute_error: 29010.7617 - mean_squared_error: 1954859136.0000
+[32m+          Epoch 397/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1950445689.3370 - mean_absolute_error: 28960.4609 - mean_squared_error: 1950445440.0000
+[32m+          Epoch 398/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1945166364.0548 - mean_absolute_error: 28940.9590 - mean_squared_error: 1945166336.0000
+[32m+          Epoch 399/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1941404704.9644 - mean_absolute_error: 28880.5977 - mean_squared_error: 1941404288.0000
+[32m+          Epoch 400/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1938017907.7260 - mean_absolute_error: 28893.7148 - mean_squared_error: 1938017792.0000
+[32m+          Epoch 401/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1931250742.7068 - mean_absolute_error: 28795.9395 - mean_squared_error: 1931250944.0000
+[32m+          Epoch 402/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1927566932.1644 - mean_absolute_error: 28778.0703 - mean_squared_error: 1927567104.0000
+[32m+          Epoch 403/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1923682481.7973 - mean_absolute_error: 28756.0410 - mean_squared_error: 1923682304.0000
+[32m+          Epoch 404/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1918399781.1726 - mean_absolute_error: 28720.7832 - mean_squared_error: 1918400128.0000
+[32m+          Epoch 405/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1913611199.4740 - mean_absolute_error: 28672.3418 - mean_squared_error: 1913611008.0000
+[32m+          Epoch 406/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1911388374.9699 - mean_absolute_error: 28644.2676 - mean_squared_error: 1911388160.0000
+[32m+          Epoch 407/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1907254985.6438 - mean_absolute_error: 28582.2988 - mean_squared_error: 1907255040.0000
+[32m+          Epoch 408/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1902395813.8740 - mean_absolute_error: 28557.5078 - mean_squared_error: 1902395520.0000
+[32m+          Epoch 409/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1899523047.1014 - mean_absolute_error: 28494.6738 - mean_squared_error: 1899523200.0000
+[32m+          Epoch 410/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1893127858.1479 - mean_absolute_error: 28496.5859 - mean_squared_error: 1893127680.0000
+[32m+          Epoch 411/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1889404776.8548 - mean_absolute_error: 28472.4219 - mean_squared_error: 1889404800.0000
+[32m+          Epoch 412/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1885890293.4795 - mean_absolute_error: 28398.2773 - mean_squared_error: 1885890176.0000
+[32m+          Epoch 413/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1882371485.4575 - mean_absolute_error: 28392.3750 - mean_squared_error: 1882371328.0000
+[32m+          Epoch 414/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1877269582.5534 - mean_absolute_error: 28327.7402 - mean_squared_error: 1877269504.0000
+[32m+          Epoch 415/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1873580039.7151 - mean_absolute_error: 28300.6133 - mean_squared_error: 1873579776.0000
+[32m+          Epoch 416/500
+[32m+          1460/1460 [==============================] - 0s 89us/sample - loss: 1869907220.3397 - mean_absolute_error: 28292.2578 - mean_squared_error: 1869907328.0000
+[32m+          Epoch 417/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1865806741.3918 - mean_absolute_error: 28269.7188 - mean_squared_error: 1865806720.0000
+[32m+          Epoch 418/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1863119273.0301 - mean_absolute_error: 28193.3105 - mean_squared_error: 1863119360.0000
+[32m+          Epoch 419/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1858359725.9397 - mean_absolute_error: 28186.5977 - mean_squared_error: 1858359808.0000
+[32m+          Epoch 420/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1855421303.2329 - mean_absolute_error: 28178.1426 - mean_squared_error: 1855421056.0000
+[32m+          Epoch 421/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1850867808.9644 - mean_absolute_error: 28116.2930 - mean_squared_error: 1850868224.0000
+[32m+          Epoch 422/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1846392336.4822 - mean_absolute_error: 28087.8223 - mean_squared_error: 1846392448.0000
+[32m+          Epoch 423/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1843031544.9863 - mean_absolute_error: 28048.8594 - mean_squared_error: 1843031552.0000
+[32m+          Epoch 424/500
+[32m+          1460/1460 [==============================] - 0s 88us/sample - loss: 1840328812.0110 - mean_absolute_error: 28024.0410 - mean_squared_error: 1840329216.0000
+[32m+          Epoch 425/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1838279836.4932 - mean_absolute_error: 28014.8105 - mean_squared_error: 1838279552.0000
+[32m+          Epoch 426/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1833630023.8904 - mean_absolute_error: 27992.0078 - mean_squared_error: 1833629952.0000
+[32m+          Epoch 427/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1830563000.4603 - mean_absolute_error: 27929.9844 - mean_squared_error: 1830563072.0000
+[32m+          Epoch 428/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1825577459.3753 - mean_absolute_error: 27909.7871 - mean_squared_error: 1825577856.0000
+[32m+          Epoch 429/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1823768516.3836 - mean_absolute_error: 27896.2852 - mean_squared_error: 1823768320.0000
+[32m+          Epoch 430/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1820289096.9425 - mean_absolute_error: 27867.0547 - mean_squared_error: 1820289152.0000
+[32m+          Epoch 431/500
+[32m+      output 9:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1815465369.2493 - mean_absolute_error: 27809.1973 - mean_squared_error: 1815465344.0000
+[32m+          Epoch 432/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1812911140.6466 - mean_absolute_error: 27827.2930 - mean_squared_error: 1812911232.0000
+[32m+          Epoch 433/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1808998404.7342 - mean_absolute_error: 27769.8828 - mean_squared_error: 1808998528.0000
+[32m+          Epoch 434/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 1807909728.0877 - mean_absolute_error: 27768.8242 - mean_squared_error: 1807909632.0000
+[32m+          Epoch 435/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1803029188.0329 - mean_absolute_error: 27720.2598 - mean_squared_error: 1803029248.0000
+[32m+          Epoch 436/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1801639714.3671 - mean_absolute_error: 27696.0430 - mean_squared_error: 1801639808.0000
+[32m+          Epoch 437/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1798003859.8137 - mean_absolute_error: 27665.4844 - mean_squared_error: 1798003712.0000
+[32m+          Epoch 438/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 1795098700.0986 - mean_absolute_error: 27648.8770 - mean_squared_error: 1795098880.0000
+[32m+          Epoch 439/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1795925194.3452 - mean_absolute_error: 27699.8555 - mean_squared_error: 1795925248.0000
+[32m+          Epoch 440/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1788003505.7973 - mean_absolute_error: 27578.4297 - mean_squared_error: 1788003584.0000
+[32m+          Epoch 441/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1785782351.9562 - mean_absolute_error: 27591.0059 - mean_squared_error: 1785782144.0000
+[32m+          Epoch 442/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1784524736.1753 - mean_absolute_error: 27541.8574 - mean_squared_error: 1784524672.0000
+[32m+          Epoch 443/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1780005244.1425 - mean_absolute_error: 27548.0547 - mean_squared_error: 1780005504.0000
+[32m+          Epoch 444/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1777869151.2110 - mean_absolute_error: 27492.1270 - mean_squared_error: 1777868928.0000
+[32m+          Epoch 445/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1774480113.2712 - mean_absolute_error: 27467.1836 - mean_squared_error: 1774480256.0000
+[32m+          Epoch 446/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1770749793.8411 - mean_absolute_error: 27489.0820 - mean_squared_error: 1770749696.0000
+[32m+          Epoch 447/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1767500313.2493 - mean_absolute_error: 27413.1348 - mean_squared_error: 1767500160.0000
+[32m+          Epoch 448/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1767231147.8356 - mean_absolute_error: 27397.8555 - mean_squared_error: 1767230976.0000
+[32m+          Epoch 449/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1762430931.8137 - mean_absolute_error: 27359.9121 - mean_squared_error: 1762431232.0000
+[32m+          Epoch 450/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1760323617.1397 - mean_absolute_error: 27354.1582 - mean_squared_error: 1760323712.0000
+[32m+          Epoch 451/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1755663752.7671 - mean_absolute_error: 27311.9043 - mean_squared_error: 1755663488.0000
+[32m+          Epoch 452/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1754932734.7726 - mean_absolute_error: 27322.9316 - mean_squared_error: 1754932864.0000
+[32m+          Epoch 453/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1751512878.9918 - mean_absolute_error: 27277.6113 - mean_squared_error: 1751513216.0000
+[32m+          Epoch 454/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1751175158.0055 - mean_absolute_error: 27295.0527 - mean_squared_error: 1751175040.0000
+[32m+          Epoch 455/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1745290828.4493 - mean_absolute_error: 27245.9590 - mean_squared_error: 1745291008.0000
+[32m+          Epoch 456/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1745297705.7315 - mean_absolute_error: 27228.6934 - mean_squared_error: 1745297664.0000
+[32m+          Epoch 457/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1742280646.4000 - mean_absolute_error: 27202.9062 - mean_squared_error: 1742280832.0000
+[32m+          Epoch 458/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 1739585475.6822 - mean_absolute_error: 27168.9648 - mean_squared_error: 1739585408.0000
+[32m+          Epoch 459/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1738847920.0438 - mean_absolute_error: 27192.1992 - mean_squared_error: 1738847872.0000
+[32m+          Epoch 460/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1736526325.1288 - mean_absolute_error: 27148.1504 - mean_squared_error: 1736526208.0000
+[32m+          Epoch 461/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1732937476.9096 - mean_absolute_error: 27109.3555 - mean_squared_error: 1732937344.0000
+[32m+          Epoch 462/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1730423888.6575 - mean_absolute_error: 27096.3105 - mean_squared_error: 1730423680.0000
+[32m+          Epoch 463/500
+[32m+          1460/1460 [==============================] - 0s 95us/sample - loss: 1729934097.1836 - mean_absolute_error: 27112.5508 - mean_squared_error: 1729934080.0000
+[32m+          Epoch 464/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1726229525.2164 - mean_absolute_error: 27073.9434 - mean_squared_error: 1726229248.0000
+[32m+          Epoch 465/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1727939518.0712 - mean_absolute_error: 27108.8164 - mean_squared_error: 1727939456.0000
+[32m+          Epoch 466/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1722085588.5151 - mean_absolute_error: 27030.3652 - mean_squared_error: 1722085760.0000
+[32m+          Epoch 467/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1721049535.8247 - mean_absolute_error: 27021.3379 - mean_squared_error: 1721049856.0000
+[32m+          Epoch 468/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1717809773.7644 - mean_absolute_error: 26998.9805 - mean_squared_error: 1717809920.0000
+[32m+          Epoch 469/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1717315221.3918 - mean_absolute_error: 27008.3945 - mean_squared_error: 1717315456.0000
+[32m+          Epoch 470/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1714613426.4986 - mean_absolute_error: 26965.6543 - mean_squared_error: 1714613376.0000
+[32m+          Epoch 471/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1712210951.7151 - mean_absolute_error: 26941.5078 - mean_squared_error: 1712210944.0000
+[32m+          Epoch 472/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1710912976.6575 - mean_absolute_error: 26939.6445 - mean_squared_error: 1710913152.0000
+[32m+          Epoch 473/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1708396185.6000 - mean_absolute_error: 26918.5078 - mean_squared_error: 1708396416.0000
+[32m+          Epoch 474/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1706369371.8795 - mean_absolute_error: 26895.3047 - mean_squared_error: 1706369408.0000
+[32m+          Epoch 475/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1706430438.7507 - mean_absolute_error: 26890.7090 - mean_squared_error: 1706430336.0000
+[32m+          Epoch 476/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1703503725.7644 - mean_absolute_error: 26868.8105 - mean_squared_error: 1703503616.0000
+[32m+          Epoch 477/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1701883847.5397 - mean_absolute_error: 26883.6191 - mean_squared_error: 1701883904.0000
+[32m+          Epoch 478/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1699360447.1233 - mean_absolute_error: 26839.4961 - mean_squared_error: 1699360128.0000
+[32m+          Epoch 479/500
+[32m+      output 10:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1697786146.7178 - mean_absolute_error: 26824.3125 - mean_squared_error: 1697786368.0000
+[32m+          Epoch 480/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1696121169.3589 - mean_absolute_error: 26821.3184 - mean_squared_error: 1696121088.0000
+[32m+          Epoch 481/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1695908822.4438 - mean_absolute_error: 26811.8516 - mean_squared_error: 1695908864.0000
+[32m+          Epoch 482/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 1693007884.9753 - mean_absolute_error: 26792.0898 - mean_squared_error: 1693008384.0000
+[32m+          Epoch 483/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1693387982.5534 - mean_absolute_error: 26782.4746 - mean_squared_error: 1693387904.0000
+[32m+          Epoch 484/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1690132082.3233 - mean_absolute_error: 26741.5996 - mean_squared_error: 1690131968.0000
+[32m+          Epoch 485/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1688453027.7699 - mean_absolute_error: 26772.9297 - mean_squared_error: 1688452992.0000
+[32m+          Epoch 486/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1688349000.2411 - mean_absolute_error: 26746.4824 - mean_squared_error: 1688348800.0000
+[32m+          Epoch 487/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 1684888432.9205 - mean_absolute_error: 26739.1895 - mean_squared_error: 1684888192.0000
+[32m+          Epoch 488/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1683922439.0137 - mean_absolute_error: 26731.0684 - mean_squared_error: 1683922432.0000
+[32m+          Epoch 489/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 1683011811.9452 - mean_absolute_error: 26708.1719 - mean_squared_error: 1683011712.0000
+[32m+          Epoch 490/500
+[32m+          1460/1460 [==============================] - 0s 90us/sample - loss: 1681719304.4164 - mean_absolute_error: 26686.7344 - mean_squared_error: 1681719296.0000
+[32m+          Epoch 491/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1679495908.6466 - mean_absolute_error: 26683.8691 - mean_squared_error: 1679495936.0000
+[32m+          Epoch 492/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1676908929.5781 - mean_absolute_error: 26640.0898 - mean_squared_error: 1676908928.0000
+[32m+          Epoch 493/500
+[32m+          1460/1460 [==============================] - 0s 94us/sample - loss: 1675576169.5562 - mean_absolute_error: 26648.7598 - mean_squared_error: 1675575936.0000
+[32m+          Epoch 494/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1673631847.8027 - mean_absolute_error: 26625.9805 - mean_squared_error: 1673631744.0000
+[32m+          Epoch 495/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1677443942.4000 - mean_absolute_error: 26645.0332 - mean_squared_error: 1677444224.0000
+[32m+          Epoch 496/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1674009432.3726 - mean_absolute_error: 26642.7363 - mean_squared_error: 1674009728.0000
+[32m+          Epoch 497/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1673364934.1370 - mean_absolute_error: 26619.6660 - mean_squared_error: 1673364608.0000
+[32m+          Epoch 498/500
+[32m+          1460/1460 [==============================] - 0s 93us/sample - loss: 1667769604.1205 - mean_absolute_error: 26587.6953 - mean_squared_error: 1667769472.0000
+[32m+          Epoch 499/500
+[32m+          1460/1460 [==============================] - 0s 91us/sample - loss: 1666793856.1753 - mean_absolute_error: 26553.3398 - mean_squared_error: 1666794112.0000
+[32m+          Epoch 500/500
+[32m+          1460/1460 [==============================] - 0s 92us/sample - loss: 1666708331.6603 - mean_absolute_error: 26546.6992 - mean_squared_error: 1666708352.0000
+[32m+      output 11:
+[32m+        output_type: execute_result
+[32m+        execution_count: 97
+[32m+        data:
+[32m+          text/plain: <tensorflow.python.keras.callbacks.History at 0x7ff2fd25b898>
+[32m+  code cell:
+[32m+    execution_count: 106
+[32m+    source:
+[32m+      model.history.history['mean_squared_error']
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 106
+[32m+        data:
+[32m+          text/plain:
+[32m+            [39039095000.0,
+[32m+             39038153000.0,
+[32m+             39034274000.0,
+[32m+             39022510000.0,
+[32m+             38993756000.0,
+[32m+             38934036000.0,
+[32m+             38824837000.0,
+[32m+             38643786000.0,
+[32m+             38364080000.0,
+[32m+             37957920000.0,
+[32m+             37397650000.0,
+[32m+             36653355000.0,
+[32m+             35704890000.0,
+[32m+             34531830000.0,
+[32m+             33126273000.0,
+[32m+             31483580000.0,
+[32m+             29614617000.0,
+[32m+             27545661000.0,
+[32m+             25310837000.0,
+[32m+             22975550000.0,
+[32m+             20591880000.0,
+[32m+             18243850000.0,
+[32m+             16008289000.0,
+[32m+             13969778000.0,
+[32m+             12175619000.0,
+[32m+             10667751000.0,
+[32m+             9467873000.0,
+[32m+             8565676000.0,
+[32m+             7920199000.0,
+[32m+             7488839000.0,
+[32m+             7215126000.0,
+[32m+             7046796000.0,
+[32m+             6947529700.0,
+[32m+             6887815700.0,
+[32m+             6848461000.0,
+[32m+             6821169000.0,
+[32m+             6800634400.0,
+[32m+             6782387700.0,
+[32m+             6766372000.0,
+[32m+             6750972400.0,
+[32m+             6734032400.0,
+[32m+             6718446000.0,
+[32m+             6701922000.0,
+[32m+             6685957000.0,
+[32m+             6670077000.0,
+[32m+             6653395500.0,
+[32m+             6638736400.0,
+[32m+             6621037600.0,
+[32m+             6604219000.0,
+[32m+             6588435500.0,
+[32m+             6571153000.0,
+[32m+             6555094000.0,
+[32m+             6537816600.0,
+[32m+             6521775600.0,
+[32m+             6504987600.0,
+[32m+             6487982000.0,
+[32m+             6470361000.0,
+[32m+             6454015000.0,
+[32m+             6437677600.0,
+[32m+             6419104300.0,
+[32m+             6401870000.0,
+[32m+             6383842000.0,
+[32m+             6368418000.0,
+[32m+             6350708000.0,
+[32m+             6332047400.0,
+[32m+             6316043000.0,
+[32m+             6298168300.0,
+[32m+             6281488000.0,
+[32m+             6263886000.0,
+[32m+             6246517000.0,
+[32m+             6230934000.0,
+[32m+             6215716400.0,
+[32m+             6194395000.0,
+[32m+             6177147400.0,
+[32m+             6160464400.0,
+[32m+             6144058400.0,
+[32m+             6124905000.0,
+[32m+             6108079600.0,
+[32m+             6092693500.0,
+[32m+             6073491500.0,
+[32m+             6055951400.0,
+[32m+             6039402500.0,
+[32m+             6023825400.0,
+[32m+             6003224600.0,
+[32m+             5985812500.0,
+[32m+             5967808500.0,
+[32m+             5950275600.0,
+[32m+             5933785000.0,
+[32m+             5915806000.0,
+[32m+             5897876000.0,
+[32m+             5881129000.0,
+[32m+             5864119000.0,
+[32m+             5844918000.0,
+[32m+             5831031300.0,
+[32m+             5811197400.0,
+[32m+             5790735400.0,
+[32m+             5777479700.0,
+[32m+             5756880000.0,
+[32m+             5741563400.0,
+[32m+             5723723000.0,
+[32m+             5703635000.0,
+[32m+             5688770600.0,
+[32m+             5671202300.0,
+[32m+             5651853000.0,
+[32m+             5634478000.0,
+[32m+             5617910000.0,
+[32m+             5603624400.0,
+[32m+             5581060000.0,
+[32m+             5565611000.0,
+[32m+             5547598300.0,
+[32m+             5528086000.0,
+[32m+             5511766500.0,
+[32m+             5494787000.0,
+[32m+             5476794000.0,
+[32m+             5457665500.0,
+[32m+             5441285600.0,
+[32m+             5425012000.0,
+[32m+             5404319000.0,
+[32m+             5387159000.0,
+[32m+             5369128000.0,
+[32m+             5352917000.0,
+[32m+             5333675500.0,
+[32m+             5316768000.0,
+[32m+             5300653000.0,
+[32m+             5279257000.0,
+[32m+             5261653500.0,
+[32m+             5244345300.0,
+[32m+             5227064300.0,
+[32m+             5207347700.0,
+[32m+             5189534000.0,
+[32m+             5170923500.0,
+[32m+             5152741400.0,
+[32m+             5134424600.0,
+[32m+             5115949600.0,
+[32m+             5098737000.0,
+[32m+             5081526000.0,
+[32m+             5061295600.0,
+[32m+             5043548000.0,
+[32m+             5025268700.0,
+[32m+             5004930600.0,
+[32m+             4987197400.0,
+[32m+             4966576600.0,
+[32m+             4948880000.0,
+[32m+             4929881600.0,
+[32m+             4911381000.0,
+[32m+             4890647000.0,
+[32m+             4873711600.0,
+[32m+             4853393400.0,
+[32m+             4834621400.0,
+[32m+             4813918000.0,
+[32m+             4794489300.0,
+[32m+             4776685000.0,
+[32m+             4757274000.0,
+[32m+             4736041000.0,
+[32m+             4716945400.0,
+[32m+             4700054500.0,
+[32m+             4680497700.0,
+[32m+             4660934000.0,
+[32m+             4641903600.0,
+[32m+             4622488600.0,
+[32m+             4600614400.0,
+[32m+             4580136000.0,
+[32m+             4562372000.0,
+[32m+             4542461000.0,
+[32m+             4521168000.0,
+[32m+             4501140500.0,
+[32m+             4481076700.0,
+[32m+             4462860000.0,
+[32m+             4441554000.0,
+[32m+             4422189000.0,
+[32m+             4404217000.0,
+[32m+             4381421600.0,
+[32m+             4364404700.0,
+[32m+             4345046000.0,
+[32m+             4322321000.0,
+[32m+             4302355500.0,
+[32m+             4281652500.0,
+[32m+             4262759400.0,
+[32m+             4241913600.0,
+[32m+             4222473000.0,
+[32m+             4205176000.0,
+[32m+             4182450700.0,
+[32m+             4164548600.0,
+[32m+             4146824000.0,
+[32m+             4125897200.0,
+[32m+             4106816500.0,
+[32m+             4085981200.0,
+[32m+             4066606800.0,
+[32m+             4048403200.0,
+[32m+             4027735600.0,
+[32m+             4009247200.0,
+[32m+             3989585000.0,
+[32m+             3971424800.0,
+[32m+             3951789800.0,
+[32m+             3931796500.0,
+[32m+             3914727400.0,
+[32m+             3895119000.0,
+[32m+             3877321700.0,
+[32m+             3857839600.0,
+[32m+             3837388800.0,
+[32m+             3819366100.0,
+[32m+             3801204000.0,
+[32m+             3782369800.0,
+[32m+             3763215600.0,
+[32m+             3747654100.0,
+[32m+             3728247600.0,
+[32m+             3710702600.0,
+[32m+             3693014300.0,
+[32m+             3675805200.0,
+[32m+             3656316200.0,
+[32m+             3639912200.0,
+[32m+             3622211000.0,
+[32m+             3604667100.0,
+[32m+             3588111400.0,
+[32m+             3572538600.0,
+[32m+             3552565800.0,
+[32m+             3534702600.0,
+[32m+             3518760700.0,
+[32m+             3501923800.0,
+[32m+             3484414700.0,
+[32m+             3468292600.0,
+[32m+             3453670400.0,
+[32m+             3435979500.0,
+[32m+             3421182700.0,
+[32m+             3403587300.0,
+[32m+             3386537700.0,
+[32m+             3372736800.0,
+[32m+             3355221000.0,
+[32m+             3339605800.0,
+[32m+             3325030700.0,
+[32m+             3309069600.0,
+[32m+             3293559600.0,
+[32m+             3278603500.0,
+[32m+             3265221400.0,
+[32m+             3249958700.0,
+[32m+             3235783700.0,
+[32m+             3220361500.0,
+[32m+             3204481500.0,
+[32m+             3190669800.0,
+[32m+             3177337000.0,
+[32m+             3163387100.0,
+[32m+             3150266600.0,
+[32m+             3135641600.0,
+[32m+             3123470600.0,
+[32m+             3106123800.0,
+[32m+             3095546400.0,
+[32m+             3081498400.0,
+[32m+             3068160000.0,
+[32m+             3054469000.0,
+[32m+             3041511400.0,
+[32m+             3029197000.0,
+[32m+             3016922600.0,
+[32m+             3003299600.0,
+[32m+             2990874400.0,
+[32m+             2980766200.0,
+[32m+             2965549000.0,
+[32m+             2953640000.0,
+[32m+             2940330800.0,
+[32m+             2929033000.0,
+[32m+             2916010500.0,
+[32m+             2905092000.0,
+[32m+             2892632300.0,
+[32m+             2879673900.0,
+[32m+             2865823000.0,
+[32m+             2857166600.0,
+[32m+             2846445800.0,
+[32m+             2831702000.0,
+[32m+             2821361700.0,
+[32m+             2814261500.0,
+[32m+             2798305800.0,
+[32m+             2787078700.0,
+[32m+             2778422800.0,
+[32m+             2766916000.0,
+[32m+             2755425800.0,
+[32m+             2745794300.0,
+[32m+             2735026700.0,
+[32m+             2725601800.0,
+[32m+             2716042500.0,
+[32m+             2705239800.0,
+[32m+             2699075800.0,
+[32m+             2689675000.0,
+[32m+             2676866300.0,
+[32m+             2669356500.0,
+[32m+             2660440800.0,
+[32m+             2649806000.0,
+[32m+             2639455000.0,
+[32m+             2631136500.0,
+[32m+             2620135000.0,
+[32m+             2611646700.0,
+[32m+             2603026200.0,
+[32m+             2596558800.0,
+[32m+             2584757800.0,
+[32m+             2576318000.0,
+[32m+             2568783600.0,
+[32m+             2558927000.0,
+[32m+             2551316700.0,
+[32m+             2543624000.0,
+[32m+             2532789200.0,
+[32m+             2527986000.0,
+[32m+             2519231200.0,
+[32m+             2511620000.0,
+[32m+             2504122600.0,
+[32m+             2493318000.0,
+[32m+             2487805200.0,
+[32m+             2478777600.0,
+[32m+             2472747500.0,
+[32m+             2465198800.0,
+[32m+             2458092800.0,
+[32m+             2449584600.0,
+[32m+             2442588700.0,
+[32m+             2437863000.0,
+[32m+             2428862500.0,
+[32m+             2423731500.0,
+[32m+             2416191200.0,
+[32m+             2409418200.0,
+[32m+             2402040300.0,
+[32m+             2395713800.0,
+[32m+             2387619300.0,
+[32m+             2382131000.0,
+[32m+             2375973600.0,
+[32m+             2370003000.0,
+[32m+             2361990000.0,
+[32m+             2355626500.0,
+[32m+             2349937200.0,
+[32m+             2342714400.0,
+[32m+             2336287200.0,
+[32m+             2331225000.0,
+[32m+             2324768000.0,
+[32m+             2318419500.0,
+[32m+             2317204700.0,
+[32m+             2306902500.0,
+[32m+             2299630800.0,
+[32m+             2294443300.0,
+[32m+             2288927200.0,
+[32m+             2283984400.0,
+[32m+             2276161300.0,
+[32m+             2273561900.0,
+[32m+             2263318800.0,
+[32m+             2257039400.0,
+[32m+             2251587600.0,
+[32m+             2245013000.0,
+[32m+             2239196700.0,
+[32m+             2232611600.0,
+[32m+             2227309300.0,
+[32m+             2220973300.0,
+[32m+             2215260200.0,
+[32m+             2208992800.0,
+[32m+             2207189800.0,
+[32m+             2196901000.0,
+[32m+             2192048000.0,
+[32m+             2185275100.0,
+[32m+             2179966000.0,
+[32m+             2176938800.0,
+[32m+             2169565400.0,
+[32m+             2163806500.0,
+[32m+             2158676000.0,
+[32m+             2152788700.0,
+[32m+             2147250800.0,
+[32m+             2141214500.0,
+[32m+             2136469200.0,
+[32m+             2131357200.0,
+[32m+             2126005800.0,
+[32m+             2121487700.0,
+[32m+             2118033400.0,
+[32m+             2113098600.0,
+[32m+             2104865900.0,
+[32m+             2100914300.0,
+[32m+             2095528300.0,
+[32m+             2089243100.0,
+[32m+             2083390200.0,
+[32m+             2078871200.0,
+[32m+             2072939000.0,
+[32m+             2069406600.0,
+[32m+             2062868400.0,
+[32m+             2058444400.0,
+[32m+             2051644900.0,
+[32m+             2046871300.0,
+[32m+             2043173000.0,
+[32m+             2037557500.0,
+[32m+             2035538700.0,
+[32m+             2026452600.0,
+[32m+             2022430300.0,
+[32m+             2017079600.0,
+[32m+             2012084100.0,
+[32m+             2007183000.0,
+[32m+             2001141400.0,
+[32m+             2001475200.0,
+[32m+             1990517500.0,
+[32m+             1989797800.0,
+[32m+             1981905400.0,
+[32m+             1981656600.0,
+[32m+             1971990300.0,
+[32m+             1968252400.0,
+[32m+             1964954200.0,
+[32m+             1960395000.0,
+[32m+             1954859100.0,
+[32m+             1950445400.0,
+[32m+             1945166300.0,
+[32m+             1941404300.0,
+[32m+             1938017800.0,
+[32m+             1931251000.0,
+[32m+             1927567100.0,
+[32m+             1923682300.0,
+[32m+             1918400100.0,
+[32m+             1913611000.0,
+[32m+             1911388200.0,
+[32m+             1907255000.0,
+[32m+             1902395500.0,
+[32m+             1899523200.0,
+[32m+             1893127700.0,
+[32m+             1889404800.0,
+[32m+             1885890200.0,
+[32m+             1882371300.0,
+[32m+             1877269500.0,
+[32m+             1873579800.0,
+[32m+             1869907300.0,
+[32m+             1865806700.0,
+[32m+             1863119400.0,
+[32m+             1858359800.0,
+[32m+             1855421000.0,
+[32m+             1850868200.0,
+[32m+             1846392400.0,
+[32m+             1843031600.0,
+[32m+             1840329200.0,
+[32m+             1838279600.0,
+[32m+             1833630000.0,
+[32m+             1830563100.0,
+[32m+             1825577900.0,
+[32m+             1823768300.0,
+[32m+             1820289200.0,
+[32m+             1815465300.0,
+[32m+             1812911200.0,
+[32m+             1808998500.0,
+[32m+             1807909600.0,
+[32m+             1803029200.0,
+[32m+             1801639800.0,
+[32m+             1798003700.0,
+[32m+             1795098900.0,
+[32m+             1795925200.0,
+[32m+             1788003600.0,
+[32m+             1785782100.0,
+[32m+             1784524700.0,
+[32m+             1780005500.0,
+[32m+             1777868900.0,
+[32m+             1774480300.0,
+[32m+             1770749700.0,
+[32m+             1767500200.0,
+[32m+             1767231000.0,
+[32m+             1762431200.0,
+[32m+             1760323700.0,
+[32m+             1755663500.0,
+[32m+             1754932900.0,
+[32m+             1751513200.0,
+[32m+             1751175000.0,
+[32m+             1745291000.0,
+[32m+             1745297700.0,
+[32m+             1742280800.0,
+[32m+             1739585400.0,
+[32m+             1738847900.0,
+[32m+             1736526200.0,
+[32m+             1732937300.0,
+[32m+             1730423700.0,
+[32m+             1729934100.0,
+[32m+             1726229200.0,
+[32m+             1727939500.0,
+[32m+             1722085800.0,
+[32m+             1721049900.0,
+[32m+             1717809900.0,
+[32m+             1717315500.0,
+[32m+             1714613400.0,
+[32m+             1712211000.0,
+[32m+             1710913200.0,
+[32m+             1708396400.0,
+[32m+             1706369400.0,
+[32m+             1706430300.0,
+[32m+             1703503600.0,
+[32m+             1701883900.0,
+[32m+             1699360100.0,
+[32m+             1697786400.0,
+[32m+             1696121100.0,
+[32m+             1695908900.0,
+[32m+             1693008400.0,
+[32m+             1693387900.0,
+[32m+             1690132000.0,
+[32m+             1688453000.0,
+[32m+             1688348800.0,
+[32m+             1684888200.0,
+[32m+             1683922400.0,
+[32m+             1683011700.0,
+[32m+             1681719300.0,
+[32m+             1679496000.0,
+[32m+             1676908900.0,
+[32m+             1675575900.0,
+[32m+             1673631700.0,
+[32m+             1677444200.0,
+[32m+             1674009700.0,
+[32m+             1673364600.0,
+[32m+             1667769500.0,
+[32m+             1666794100.0,
+[32m+             1666708400.0]
+[32m+  code cell:
+[32m+    execution_count: 111
+[32m+    source:
+[32m+      plt.plot(model.history.history['loss']);
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: display_data
+[32m+        data:
+[32m+          image/png: iVBORw0K...<snip base64, md5=396325168422823d...>
+[32m+          text/plain: <Figure size 432x288 with 1 Axes>
+[32m+  code cell:
+[32m+    execution_count: 190
+[32m+    source:
+[32m+      from sklearn.model_selection import 
+[32m+  code cell:
+[32m+    execution_count: 191
+[32m+    source:
+[32m+      X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+[32m+  code cell:
+[32m+    execution_count: 192
+[32m+    source:
+[32m+      from sklearn import linear_model
+[32m+      import numpy as np
+[32m+      reg = linear_model.RidgeCV(alphas=np.logspace(-6, 6, 13))
+[32m+      reg.fit(X_train, y_train)
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 192
+[32m+        data:
+[32m+          text/plain:
+[32m+            RidgeCV(alphas=array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
+[32m+                   1.e+02, 1.e+03, 1.e+04, 1.e+05, 1.e+06]),
+[32m+                    cv=None, fit_intercept=True, gcv_mode=None, normalize=False,
+[32m+                    scoring=None, store_cv_values=False)
+[32m+  code cell:
+[32m+    execution_count: 194
+[32m+    source:
+[32m+      preds = reg.predict(X_test)
+[32m+  code cell:
+[32m+    execution_count: 197
+[32m+    source:
+[32m+      from sklearn.metrics import mean_squared_error as mse
+[32m+      mse(y_test, preds), model.history.history['mean_squared_error'][-1]
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 197
+[32m+        data:
+[32m+          text/plain: (2299257008.47652, 1637464000.0)
+
+[0m[34m## deleted /cells/1:[0m
+[31m-  code cell:
+[31m-    metadata (unknown keys):
+[31m-      colab:
+[31m-      colab_type: code
+[31m-      id: 8NLTAR87uYJ-
+[31m-    source:
+[31m-      ##### Your Code Here #####
+
+[0m[34m## inserted before /cells/3:[0m
+[32m+  code cell:
+[32m+    execution_count: 173
+[32m+    metadata (unknown keys):
+[32m+      colab:
+[32m+      colab_type: code
+[32m+      id: szi6-IpuzaH1
+[32m+    source:
+[32m+      from keras.datasets import fashion_mnist
+[32m+      
+[32m+      (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
+[32m+  code cell:
+[32m+    execution_count: 174
+[32m+    source:
+[32m+      plt.imshow(x_train[100]);
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: display_data
+[32m+        data:
+[32m+          image/png: iVBORw0K...<snip base64, md5=eba8d3abcc9b2dfc...>
+[32m+          text/plain: <Figure size 432x288 with 1 Axes>
+[32m+  code cell:
+[32m+    execution_count: 175
+[32m+    source:
+[32m+      # input image dimensions
+[32m+      img_rows, img_cols = 28, 28
+[32m+  code cell:
+[32m+    execution_count: 176
+[32m+    source:
+[32m+      x_train = x_train.reshape(x_train.shape[0], img_rows * img_cols)
+[32m+      x_test = x_test.reshape(x_test.shape[0], img_rows * img_cols)
+[32m+      
+[32m+      # Normalize Our Data
+[32m+      x_train = x_train / 255
+[32m+      x_test = x_test / 255
+[32m+  code cell:
+[32m+    execution_count: 177
+[32m+    source:
+[32m+      x_train.shape, x_test.shape
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 177
+[32m+        data:
+[32m+          text/plain: ((60000, 784), (10000, 784))
+[32m+  code cell:
+[32m+    execution_count: 178
+[32m+    source:
+[32m+      y_train[:20]
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 178
+[32m+        data:
+[32m+          text/plain:
+[32m+            array([9, 0, 0, 3, 0, 2, 7, 2, 5, 5, 0, 9, 5, 5, 7, 9, 1, 0, 6, 4],
+[32m+                  dtype=uint8)
+[32m+  code cell:
+[32m+    execution_count: 180
+[32m+    source:
+[32m+      from tensorflow.keras import utils
+[32m+  code cell:
+[32m+    execution_count: 181
+[32m+    source:
+[32m+      y_train = utils.to_categorical(y_train, 10)
+[32m+      y_test = utils.to_categorical(y_test, 10)
+[32m+  code cell:
+[32m+    execution_count: 182
+[32m+    source:
+[32m+      y_train[:20]
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 182
+[32m+        data:
+[32m+          text/plain:
+[32m+            array([[0., 0., 0., 0., 0., 0., 0., 0., 0., 1.],
+[32m+                   [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 1., 0., 0., 0., 0., 0., 0.],
+[32m+                   [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 0., 0., 1., 0., 0.],
+[32m+                   [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+[32m+                   [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 1.],
+[32m+                   [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 0., 0., 1., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 1.],
+[32m+                   [0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 0., 0., 1., 0., 0., 0.],
+[32m+                   [0., 0., 0., 0., 1., 0., 0., 0., 0., 0.]], dtype=float32)
+[32m+  code cell:
+[32m+    execution_count: 185
+[32m+    source:
+[32m+      mdl = Sequential()
+[32m+      mdl.add(Dense(15,input_dim=784, activation='relu'))
+[32m+      mdl.add(Dense(10, activation='relu'))
+[32m+      mdl.add(Dense(30, activation='relu'))
+[32m+      mdl.add(Dense(10, activation='softmax'))
+[32m+      mdl.compile(loss='categorical_crossentropy',
+[32m+                    optimizer='adam',
+[32m+                    metrics=['accuracy'])
+[32m+      mdl.fit(x_train,y_train, epochs=50)
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: stream
+[32m+        name: stdout
+[32m+        text:
+[32m+          Epoch 1/50
+[32m+          60000/60000 [==============================] - 7s 114us/sample - loss: 0.6320 - acc: 0.7788
+[32m+          Epoch 2/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.4515 - acc: 0.8403
+[32m+          Epoch 3/50
+[32m+          60000/60000 [==============================] - 6s 107us/sample - loss: 0.4175 - acc: 0.8519
+[32m+          Epoch 4/50
+[32m+          60000/60000 [==============================] - 6s 105us/sample - loss: 0.3984 - acc: 0.8565
+[32m+          Epoch 5/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.3839 - acc: 0.8622
+[32m+          Epoch 6/50
+[32m+          60000/60000 [==============================] - 6s 107us/sample - loss: 0.3724 - acc: 0.8658
+[32m+          Epoch 7/50
+[32m+          60000/60000 [==============================] - 6s 105us/sample - loss: 0.3654 - acc: 0.8688
+[32m+          Epoch 8/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.3559 - acc: 0.8715
+[32m+          Epoch 9/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.3485 - acc: 0.8726
+[32m+          Epoch 10/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3439 - acc: 0.8746
+[32m+          Epoch 11/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.3379 - acc: 0.8755
+[32m+          Epoch 12/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3334 - acc: 0.8777
+[32m+          Epoch 13/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.3298 - acc: 0.8783
+[32m+          Epoch 14/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3240 - acc: 0.8818
+[32m+          Epoch 15/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.3217 - acc: 0.8810
+[32m+          Epoch 16/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3186 - acc: 0.8823
+[32m+          Epoch 17/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.3139 - acc: 0.8832
+[32m+          Epoch 18/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3120 - acc: 0.8847
+[32m+          Epoch 19/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3085 - acc: 0.8858
+[32m+          Epoch 20/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.3049 - acc: 0.8870
+[32m+          Epoch 21/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3025 - acc: 0.8870
+[32m+          Epoch 22/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.3011 - acc: 0.8884
+[32m+          Epoch 23/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2988 - acc: 0.8894
+[32m+          Epoch 24/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2970 - acc: 0.8898
+[32m+          Epoch 25/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2946 - acc: 0.8906
+[32m+          Epoch 26/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2937 - acc: 0.8903
+[32m+          Epoch 27/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2899 - acc: 0.8925
+[32m+          Epoch 28/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2887 - acc: 0.8932
+[32m+          Epoch 29/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.2871 - acc: 0.8925
+[32m+          Epoch 30/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.2846 - acc: 0.8942
+[32m+          Epoch 31/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.2851 - acc: 0.8943
+[32m+          Epoch 32/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2828 - acc: 0.8946
+[32m+          Epoch 33/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2792 - acc: 0.8958
+[32m+          Epoch 34/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2795 - acc: 0.8962
+[32m+          Epoch 35/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2774 - acc: 0.8968
+[32m+          Epoch 36/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2771 - acc: 0.8967
+[32m+          Epoch 37/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.2750 - acc: 0.8976
+[32m+          Epoch 38/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2743 - acc: 0.8965
+[32m+          Epoch 39/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2737 - acc: 0.8976
+[32m+          Epoch 40/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2703 - acc: 0.8985
+[32m+          Epoch 41/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2717 - acc: 0.8984
+[32m+          Epoch 42/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2699 - acc: 0.8990
+[32m+          Epoch 43/50
+[32m+          60000/60000 [==============================] - 6s 105us/sample - loss: 0.2690 - acc: 0.8989
+[32m+          Epoch 44/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2689 - acc: 0.8996
+[32m+          Epoch 45/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.2665 - acc: 0.9003
+[32m+          Epoch 46/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2665 - acc: 0.9013
+[32m+          Epoch 47/50
+[32m+          60000/60000 [==============================] - 6s 102us/sample - loss: 0.2649 - acc: 0.9014
+[32m+          Epoch 48/50
+[32m+          60000/60000 [==============================] - 6s 103us/sample - loss: 0.2647 - acc: 0.9010
+[32m+          Epoch 49/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2633 - acc: 0.9021
+[32m+          Epoch 50/50
+[32m+          60000/60000 [==============================] - 6s 104us/sample - loss: 0.2633 - acc: 0.9017
+[32m+      output 1:
+[32m+        output_type: execute_result
+[32m+        execution_count: 185
+[32m+        data:
+[32m+          text/plain: <tensorflow.python.keras.callbacks.History at 0x7ff2f47323c8>
+[32m+  code cell:
+[32m+    execution_count: 152
+[32m+    source:
+[32m+      plt.plot(mdl.history.history['loss'])
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 152
+[32m+        data:
+[32m+          text/plain: [<matplotlib.lines.Line2D at 0x7ff2df3555f8>]
+[32m+      output 1:
+[32m+        output_type: display_data
+[32m+        data:
+[32m+          image/png: iVBORw0K...<snip base64, md5=eda8aaf840eeb83d...>
+[32m+          text/plain: <Figure size 432x288 with 1 Axes>
+[32m+  code cell:
+[32m+    execution_count: 155
+[32m+    source:
+[32m+      plt.plot(mdl.history.history['mean_absolute_error'])
+[32m+    outputs:
+[32m+      output 0:
+[32m+        output_type: execute_result
+[32m+        execution_count: 155
+[32m+        data:
+[32m+          text/plain: [<matplotlib.lines.Line2D at 0x7ff2df297518>]
+[32m+      output 1:
+[32m+        output_type: display_data
+[32m+        data:
+[32m+          image/png: iVBORw0K...<snip base64, md5=161876ed2d727c05...>
+[32m+          text/plain: <Figure size 432x288 with 1 Axes>
+
+[0m[34m## deleted /cells/3:[0m
+[31m-  code cell:
+[31m-    metadata (unknown keys):
+[31m-      colab:
+[31m-      colab_type: code
+[31m-      id: szi6-IpuzaH1
+[31m-    source:
+[31m-      ##### Your Code Here #####
+
+[0m[34m## modified /metadata/kernelspec/display_name:[0m
+[31m-  Python 3
+[32m+  conda_tensorflow_p36
+
+[0m[34m## modified /metadata/kernelspec/name:[0m
+[31m-  python3
+[32m+  conda_tensorflow_p36
+
+[0m[34m## modified /metadata/language_info/version:[0m
+[31m-  3.7.3
+[32m+  3.6.5
+
+[0m

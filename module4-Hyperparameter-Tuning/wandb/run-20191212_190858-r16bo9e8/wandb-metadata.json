@@ -1,0 +1,27 @@
+{
+    "root": "/home/ec2-user/SageMaker/DS-Unit-4-Sprint-2-Neural-Networks",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "https://github.com/HakujouRyu/DS-Unit-4-Sprint-2-Neural-Networks",
+        "commit": "1a3d73e67f13378d69e1da51b74f27f9d75951cc"
+    },
+    "email": null,
+    "startedAt": "2019-12-12T19:08:47.719601",
+    "host": "ip-172-16-132-180",
+    "username": "ec2-user",
+    "executable": "/home/ec2-user/anaconda3/envs/tensorflow_p36/bin/python",
+    "os": "Linux-4.14.152-98.182.amzn1.x86_64-x86_64-with-glibc2.9",
+    "python": "3.6.5",
+    "cpu_count": 2,
+    "cuda": "10.0.130",
+    "args": [
+        "-f",
+        "/home/ec2-user/.local/share/jupyter/runtime/kernel-0d3d13f9-11ab-450e-826a-94769a74b588.json"
+    ],
+    "state": "running",
+    "jobType": null,
+    "mode": "run",
+    "name": "rich-frost-113",
+    "project": "boston",
+    "heartbeatAt": "2019-12-12T19:08:59.358811"
+}
